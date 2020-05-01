@@ -11,7 +11,7 @@ function Timer() {
     return (
         <Container>
             <Horizontal margin='0 0 20px 80px' position='relative'>
-                <h1>25:00</h1>
+                <h2>25:00</h2>
                 <BtnIcon margin='0 0 0 26px' icon={<MdEdit size='24' />} />
                 {/* <BtnIcon margin='0 0 0 26px' icon={<MdDone size='24' />} /> */}
             </Horizontal>
@@ -31,7 +31,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     
-    h1 {
+    h2 {
         color: #343434;
         font-family: monospace; 
         font-size: 44px;
