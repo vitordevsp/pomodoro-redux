@@ -1,11 +1,12 @@
 import React from 'react'
 import Card from '../Card'
+import Timer from './Timer'
 
 
 function CardTimer() {
     return (
         <Card>
-            <h1>CardTimer</h1>
+            <Timer />
         </Card>
     )
 }
