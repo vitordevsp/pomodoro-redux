@@ -1,7 +1,7 @@
 import React from 'react'
-import GlobalStyle from './components/GlobalStyle'
-import Header from './components/Header'
-import ContainerPomodoro from './components/containerPomodoro'
+import GlobalStyle from './GlobalStyle'
+import Header from './Header'
+import ContainerPomodoro from './containerPomodoro'
 
 
 function App() {
