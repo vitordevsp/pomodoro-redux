@@ -18,8 +18,8 @@ function ListPomodoros() {
 
     return (
         <Container>
-            <ItemList num='#1' text='Prototipagem part 1' onSelect={onSelect} onDelete={onDelete} />
-            <ItemList num='#2' text='Prototipagem part 2' onSelect={onSelect} onDelete={onDelete} />
+            <ItemList num='#1' text='Prototipagem part 1' time='25:00' onSelect={onSelect} onDelete={onDelete} />
+            <ItemList num='#2' text='Prototipagem part 2' time='25:00' onSelect={onSelect} onDelete={onDelete} />
             <ItemList num='#3' text='Prototipagem part 3' onSelect={onSelect} onDelete={onDelete} />
         </Container>
     )

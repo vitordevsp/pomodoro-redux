@@ -6,17 +6,19 @@ import { MdCheckCircle, MdDeleteForever } from 'react-icons/md'
 import Horizontal from '../../components/Horizontal'
 
 
-function ItemList({ num, text, onSelect, onDelete }) {
+function ItemList({ num, text, time, onSelect, onDelete }) {
     return (
-        <Card onClick={onSelect} name='cardItem' className='teste' width='100%' padding='0 4px 0 12px' justify='space-between'>
+        <Card onClick={onSelect} name='cardItem' className='teste' width='100%' padding='0 12px' justify='space-between'>
             <Horizontal>
                 <MdCheckCircle size='24' color='#4EB089' />
                 <Text margin='0 0 0 12px'>{`${num} - ${text}`}</Text>
             </Horizontal>
 
-            <ContainerBtnDel className='hide'>
+            {time && <Text className='none' weight='300' size='1em'>{time}</Text>}
+
+            {onDelete && <ContainerBtnDel className='hide'>
                 <BtnIcon name='btnDel' onClick={onDelete}> <MdDeleteForever size='24' color='#303030' /> </BtnIcon>
-            </ContainerBtnDel>
+            </ContainerBtnDel>}
         </Card>
     )
 }
@@ -40,12 +42,15 @@ const Card = styled.div`
     position: relative;
 
     .hide {
-        position: relative;
-        right: -40px;
+        position: absolute;
         transition: right 300ms ease-in;
+        right: -40px;
     }
 
-    :hover .hide { right: 0; }
+    .none { transition: opacity 400ms ease; }
+
+    :hover .hide { right: 8px; }
+    :hover .none { opacity: 0; }
 `
 
 const ContainerBtnDel = styled.div`
