@@ -4,9 +4,9 @@ import { MdAdd } from 'react-icons/md'
 import BtnIcon from './BtnIcon'
 
 
-function InputAdd({ onClickAdd = () => { }, ...props }) {
+function InputAdd({ onClickAdd = () => { }, margin, ...props }) {
     return (
-        <Container>
+        <Container margin={margin}>
             <Input {...props} />
             <BtnIcon onClick={onClickAdd}> <MdAdd size='24' color='#303030' /> </BtnIcon>
         </Container>
@@ -14,10 +14,10 @@ function InputAdd({ onClickAdd = () => { }, ...props }) {
 }
 
 const Container = styled.div`
-    width: 100%;
-    background-color: #FFFFFF;
-    border-radius: 30px;
+    margin: ${({ margin = '0' }) => margin};
     padding: 4px 10px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
 `
