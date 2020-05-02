@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../../components/Card'
 import Timer from './Timer'
 import SelectedPomodoro from './SelectedPomodoro'
+import ToDoList from './toDoList'
 
 
 function CardTimer() {
@@ -9,6 +10,7 @@ function CardTimer() {
         <Card>
             <Timer />
             <SelectedPomodoro />
+            <ToDoList />
         </Card>
     )
 }
