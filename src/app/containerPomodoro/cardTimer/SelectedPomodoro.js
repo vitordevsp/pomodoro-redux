@@ -1,15 +1,15 @@
 import React from 'react'
 import Horizontal from '../../components/Horizontal'
-import TextInfo from '../../components/TextInfo'
+import Text from '../../components/Text'
 import Line from '../../components/Line'
 
 
 function SelectedPomodoro() {
     return (
         <Horizontal margin='0 16px'>
-            <TextInfo>Tarefas:  #2 - Prototipagem part 2</TextInfo>
+            <Text>Tarefas:  #2 - Prototipagem part 2</Text>
             <Line />
-            <TextInfo>0 - 3</TextInfo>
+            <Text>0 - 3</Text>
         </Horizontal>
     )
 }
