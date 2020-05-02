@@ -1,11 +1,13 @@
 import React from 'react'
 import Card from '../../components/Card'
+import CounterPomodoro from './CounterPomodoro'
 
 
 function CardList() {
+
     return (
         <Card>
-            <h1>CardList</h1>
+            <CounterPomodoro />            
         </Card>
     )
 }
