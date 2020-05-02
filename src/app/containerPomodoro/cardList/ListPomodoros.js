@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import ItemList from './ItemList'
+import { useSelector } from 'react-redux'
 
 
 function ListPomodoros() {
+
+    const arrayPomodoros = useSelector(state => state.pomodoros)
+
+    console.log(arrayPomodoros)
 
     const onSelect = (event) => {
         console.log('---onSelect---')
@@ -18,9 +23,10 @@ function ListPomodoros() {
 
     return (
         <Container>
-            <ItemList num='#1' text='Prototipagem part 1' time='25:00' onSelect={onSelect} onDelete={onDelete} />
-            <ItemList num='#2' text='Prototipagem part 2' time='25:00' onSelect={onSelect} onDelete={onDelete} />
-            <ItemList num='#3' text='Prototipagem part 3' onSelect={onSelect} onDelete={onDelete} />
+            {arrayPomodoros.map(obj => (
+                <ItemList key={obj.indicator} num={obj.indicator} text={obj.name} time={obj.time}
+                    onSelect={onSelect} onDelete={onDelete} />
+            ))}
         </Container>
     )
 }
