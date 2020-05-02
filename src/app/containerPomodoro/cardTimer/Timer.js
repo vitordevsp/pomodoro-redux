@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import Button from '../../components/Button'
 import Horizontal from '../../components/Horizontal'
 import BtnIcon from '../../components/BtnIcon'
-import { MdEdit } from 'react-icons/md'
-// import { MdDone } from 'react-icons/md'
+import { MdEdit } from 'react-icons/md' // MdDone
 
 
 function Timer() {
@@ -12,7 +11,11 @@ function Timer() {
         <Container>
             <Horizontal margin='0 0 20px 80px' position='relative'>
                 <h2>25:00</h2>
-                <BtnIcon margin='0 0 0 26px' icon={<MdEdit size='24' />} />
+
+                <BtnIcon margin='0 0 0 26px' width='36px' height='36px' background='#F5F5F5' shadow>
+                    <MdEdit size='24' />
+                </BtnIcon>
+
                 {/* <BtnIcon margin='0 0 0 26px' icon={<MdDone size='24' />} /> */}
             </Horizontal>
 
