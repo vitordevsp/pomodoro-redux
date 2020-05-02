@@ -25,7 +25,7 @@ function Timer() {
 }
 
 const Container = styled.div`
-    height: 200px;
+    height: 170px;
     display: flex;
     flex-direction: column;
     align-items: center;
