@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Card from '../../components/Card'
 import CounterPomodoro from './CounterPomodoro'
 import InputAdd from '../../components/InputAdd'
+import ListPomodoros from './ListPomodoros'
 
 
 function CardList() {
@@ -16,8 +17,9 @@ function CardList() {
 
     return (
         <Card>
-            <CounterPomodoro />            
-            <InputAdd placeholder='Novo Pomodoro: ' value={newPomodoro} onChange={onChange} onClickAdd={onClickAdd} margin='0 24px' />
+            <CounterPomodoro />
+            <InputAdd placeholder='Novo Pomodoro: ' value={newPomodoro} onChange={onChange} onClickAdd={onClickAdd} margin='0 24px 18px' />
+            <ListPomodoros />
         </Card>
     )
 }
