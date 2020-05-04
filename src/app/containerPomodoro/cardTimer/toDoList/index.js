@@ -4,7 +4,7 @@ import InputAdd from '../../../components/InputAdd'
 import ItemList from './ItemList'
 
 
-function ToDoList() {
+function ToDoList({ obj }) {
 
     const [newTask, setNewTask] = useState('')
 
@@ -17,11 +17,10 @@ function ToDoList() {
     return (
         <Container>
             <InputAdd placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} />
-          
-            <ItemList indicatorPomodoro='#1' text='Criar um arquivo no figma 1' checked={true} />
-            <ItemList indicatorPomodoro='#1' text='Criar um arquivo no figma 2' checked={false} />
-            <ItemList indicatorPomodoro='#1' text='Criar um arquivo no figma 3' checked={false} />
-            <ItemList indicatorPomodoro='#1' text='Criar um arquivo no figma 4' checked={true} />
+
+            {obj.toDoList.map((objToDo, index) => (
+                <ItemList key={index} indicatorPomodoro={objToDo.indicator} text={objToDo.name} checked={objToDo.done} />
+            ))}
         </Container>
     )
 }

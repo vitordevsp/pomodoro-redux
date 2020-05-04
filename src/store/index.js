@@ -13,7 +13,12 @@ const INITIAL_STATE = {
                 {
                     done: false,
                     indicator: '#1',
-                    name: 'Primeiro pomodoro',
+                    name: 'Primeira tarefa',
+                },
+                {
+                    done: true,
+                    indicator: '#1',
+                    name: 'Segunda tarefa',
                 }
             ]
         }
