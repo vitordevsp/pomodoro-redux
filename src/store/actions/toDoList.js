@@ -16,9 +16,12 @@ const toDoList = {
         }
     }),
 
-    del: (indicator) => ({
+    del: (indicator, indexTask) => ({
         type: 'DEL_TASK',
-        value: indicator
+        value: {
+            indicator,
+            indexTask
+        }
     }),
 
     change: (indicator) => ({

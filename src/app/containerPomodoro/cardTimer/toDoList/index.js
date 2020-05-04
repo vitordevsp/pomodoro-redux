@@ -2,24 +2,41 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import InputAdd from '../../../components/InputAdd'
 import ItemList from './ItemList'
+import { useDispatch } from 'react-redux'
+import { toDoList } from '../../../../store/actions'
 
 
 function ToDoList({ obj }) {
+
+    const dispatch = useDispatch()
 
     const [newTask, setNewTask] = useState('')
 
     const onChange = event => setNewTask(event.target.value)
 
     const onClickAdd = () => {
-        console.log(newTask)
+        if (newTask !== '') {
+            dispatch(toDoList.add(obj.indicator, newTask))
+            setNewTask('')
+            document.getElementById('inputTask').focus()
+        }
     }
+
+    const onDelete = (indexTask) => {
+        const response = window.confirm('Excluir a Tarefa ?')
+        if (!response) return
+
+        dispatch(toDoList.del(obj.indicator, indexTask))
+    }
+
 
     return (
         <Container>
-            <InputAdd placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} />
+            <InputAdd id='inputTask' placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} />
 
             {obj.toDoList.map((objToDo, index) => (
-                <ItemList key={index} indicatorPomodoro={objToDo.indicator} text={objToDo.name} checked={objToDo.done} />
+                <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
+                    onDelete={() => onDelete(index)} />
             ))}
         </Container>
     )
