@@ -11,7 +11,7 @@ const INITIAL_STATE = {
             time: false,
             toDoList: [
                 {
-                    completed: false,
+                    done: false,
                     indicator: '#1',
                     name: 'Primeiro pomodoro',
                 }
@@ -25,7 +25,7 @@ const INITIAL_STATE = {
             time: false,
             toDoList: [
                 {
-                    completed: false,
+                    done: false,
                     indicator: '#2',
                     name: 'Primeiro pomodoro',
                 }
@@ -38,6 +38,12 @@ function reducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'ADD_POMODORO':
             return { ...state, pomodoros: [...state.pomodoros, action.value] }
+
+        case 'DEL_POMODORO':
+            const newArray = state.pomodoros
+                .filter(obj => obj.indicator !== action.value)
+                .map((obj, index) => ({ ...obj, indicator: `#${++index}` }))
+            return { ...state, pomodoros: [...newArray] }
 
         default:
             return state
