@@ -1,31 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
 import ItemList from './ItemList'
-import { useSelector } from 'react-redux'
+// import { useDispatch } from 'react-redux'
+// import { pomodoro } from '../../../store/actions'
 
 
-function ListPomodoros() {
+function ListPomodoros({ array }) {
 
-    const arrayPomodoros = useSelector(state => state.pomodoros)
+    // const dispatch = useDispatch()
 
-    console.log(arrayPomodoros)
-
-    const onSelect = (event) => {
+    const onSelect = (event, obj) => {
         console.log('---onSelect---')
         console.log(event.currentTarget.getAttribute('name'))
+        console.log(obj)
     }
 
-    const onDelete = (event) => {
+    const onDelete = (event, obj) => {
         console.log('---onDelete---')
         console.log(event.currentTarget.getAttribute('name'))
+        console.log(obj)
     }
 
 
     return (
         <Container>
-            {arrayPomodoros.map(obj => (
+            {array && array.map(obj => (
                 <ItemList key={obj.indicator} num={obj.indicator} text={obj.name} time={obj.time}
-                    onSelect={onSelect} onDelete={onDelete} />
+                    onSelect={(event) => onSelect(event, obj)} onDelete={(event) => onDelete(event, obj)} />
             ))}
         </Container>
     )
