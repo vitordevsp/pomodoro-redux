@@ -24,9 +24,12 @@ const toDoList = {
         }
     }),
 
-    change: (indicator) => ({
+    change: (indicator, indexTask) => ({
         type: 'CHANGE_DONE',
-        value: indicator
+        value: {
+            indicator,
+            indexTask
+        }
     }),
 }
 

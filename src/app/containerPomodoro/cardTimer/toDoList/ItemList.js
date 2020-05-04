@@ -6,10 +6,10 @@ import { MdCheckBoxOutlineBlank, MdCheckBox, MdArrowDropDown, MdDeleteForever } 
 import BtnIcon from '../../../components/BtnIcon'
 
 
-function ItemList({ indicator, text, checked, openModal, onDelete }) {
+function ItemList({ indicator, text, checked, openModal, onDelete, changeDone }) {
     return (
         <Horizontal margin='10px 0 0'>
-            <Card padding='0 5px' cursor='pointer' selected={checked}>
+            <Card onClick={changeDone} padding='0 5px' cursor='pointer' selected={checked}>
                 {checked ?
                     <MdCheckBox size='26' color='#4EB089' /> :
                     <MdCheckBoxOutlineBlank size='26' color='#4EB089' />

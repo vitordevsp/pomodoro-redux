@@ -29,6 +29,10 @@ function ToDoList({ obj }) {
         dispatch(toDoList.del(obj.indicator, indexTask))
     }
 
+    const changeDone = (indexTask) => {
+        dispatch(toDoList.change(obj.indicator, indexTask))
+    }
+
 
     return (
         <Container>
@@ -36,7 +40,7 @@ function ToDoList({ obj }) {
 
             {obj.toDoList.map((objToDo, index) => (
                 <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
-                    onDelete={() => onDelete(index)} />
+                    onDelete={() => onDelete(index)} changeDone={() => changeDone(index)} />
             ))}
         </Container>
     )

@@ -60,17 +60,27 @@ function reducer(state = INITIAL_STATE, action) {
         case 'DEL_TASK': {
             const delTaskPomodoro = obj => ({
                 ...obj,
-                toDoList: obj.toDoList.filter((toDo, index) => index !== action.value.indexTask)
+                toDoList: obj.toDoList.filter((task, index) => index !== action.value.indexTask)
             })
 
-            // substituindo pomodoro com a nova tarefa
+            // substituindo pomodoro sem a tarefa deletada
             const newArrayPomodoros = state.pomodoros.map((obj) => (obj.indicator !== action.value.indicator) ?
                 obj : delTaskPomodoro(obj))
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
 
-        case 'CHANGE_DONE':
-            return { ...state }
+        case 'CHANGE_DONE': {
+            const changeTaskPomodoro = obj => ({
+                ...obj,
+                toDoList: obj.toDoList.map((task, index) => (index !== action.value.indexTask) ?
+                    task : { ...task, done: !task.done })
+            })
+
+            // substituindo pomodoro sem a tarefa deletada
+            const newArrayPomodoros = state.pomodoros.map((obj) => (obj.indicator !== action.value.indicator) ?
+                obj : changeTaskPomodoro(obj))
+            return { ...state, pomodoros: [...newArrayPomodoros] }
+        }
 
         default:
             return state
