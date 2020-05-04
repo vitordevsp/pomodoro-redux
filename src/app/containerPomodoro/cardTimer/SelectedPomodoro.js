@@ -2,21 +2,20 @@ import React from 'react'
 import Horizontal from '../../components/Horizontal'
 import Text from '../../components/Text'
 import Line from '../../components/Line'
-import { useSelector } from 'react-redux'
 
 
-function SelectedPomodoro() {
+function SelectedPomodoro({ obj }) {
 
-    const array = useSelector(state => state.pomodoros)
+    const countToDo = obj.toDoList.length
+    let countToDoCompleted = 0
+    obj.toDoList.forEach(obj => obj.completed ? ++countToDoCompleted : false)
 
-    const pomodoroSelected = array.find(obj => obj.selected)
-    console.log(pomodoroSelected)
 
     return (
         <Horizontal margin='0 16px'>
-            <Text>Pomodoro: {`${pomodoroSelected.indicator} - ${pomodoroSelected.name}`}</Text>
+            <Text>Pomodoro: {`${obj.indicator} - ${obj.name}`}</Text>
             <Line />
-            <Text>0 - 3</Text>
+            <Text>{`${countToDoCompleted} - ${countToDo}`}</Text>
         </Horizontal>
     )
 }
