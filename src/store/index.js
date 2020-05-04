@@ -6,27 +6,13 @@ const INITIAL_STATE = {
         {
             indicator: '#1',
             name: 'Primeiro pomodoro',
-            selected: false,
+            selected: true,
             completed: false,
             time: false,
             toDoList: [
                 {
                     done: false,
                     indicator: '#1',
-                    name: 'Primeiro pomodoro',
-                }
-            ]
-        },
-        {
-            indicator: '#2',
-            name: 'Primeiro pomodoro 2',
-            selected: false,
-            completed: false,
-            time: false,
-            toDoList: [
-                {
-                    done: false,
-                    indicator: '#2',
                     name: 'Primeiro pomodoro',
                 }
             ]
