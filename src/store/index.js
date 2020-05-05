@@ -35,9 +35,12 @@ function reducer(state = INITIAL_STATE, action) {
             return { ...state, pomodoros: [...state.pomodoros, action.value] }
 
         case 'DEL_POMODORO': {
-            const newArray = state.pomodoros
-                .filter(obj => obj.indicator !== action.value) // removendo pomodoro
-                .map((obj, index) => ({ ...obj, indicator: `#${++index}` })) // reorganizando a lista
+            const removeAndSelect = obj => obj.indicator !== action.value
+
+            const rearrangingArray = (obj, index) => ({ ...obj, indicator: `#${++index}` })
+
+            const newArray = state.pomodoros.filter(removeAndSelect).map(rearrangingArray)
+
             return { ...state, pomodoros: [...newArray] }
         }
 
@@ -46,6 +49,11 @@ function reducer(state = INITIAL_STATE, action) {
                 ...obj,
                 selected: (obj.indicator === action.value) ? true : false
             }))
+
+            // validando se selecionou, senão seleciona o ultimo
+            const pomodoroSelected = state.pomodoros.find(obj => obj.selected)
+            if (!pomodoroSelected) newArray[newArray.length - 1].selected = true
+
             return { ...state, pomodoros: [...newArray] }
         }
 
