@@ -8,7 +8,7 @@ function SelectedPomodoro({ obj }) {
 
     const countToDo = obj.toDoList.length
     let countToDoCompleted = 0
-    obj.toDoList.forEach(obj => obj.completed ? ++countToDoCompleted : false)
+    obj.toDoList.forEach(obj => obj.done ? ++countToDoCompleted : false)
 
 
     return (
