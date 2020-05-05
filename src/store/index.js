@@ -14,11 +14,6 @@ const INITIAL_STATE = {
                     done: false,
                     indicator: '#1',
                     name: 'Primeira tarefa',
-                },
-                {
-                    done: true,
-                    indicator: '#1',
-                    name: 'Segunda tarefa',
                 }
             ]
         }
@@ -26,6 +21,14 @@ const INITIAL_STATE = {
 }
 
 function reducer(state = INITIAL_STATE, action) {
+
+    // função generica que é usada varias vezes no ToDoList
+    const findAndModifyPomodoro = (functionModify) => {
+        return state.pomodoros.map((obj) => (obj.indicator !== action.value.indicator) ?
+            obj : functionModify(obj))
+    }
+
+
     switch (action.type) {
 
         // -------- Pomodoro ---------
@@ -48,8 +51,7 @@ function reducer(state = INITIAL_STATE, action) {
             })
 
             // substituindo pomodoro com a nova tarefa
-            const newArrayPomodoros = state.pomodoros.map((obj) => (obj.indicator !== action.value.indicator) ?
-                obj : newTaskPomodoro(obj))
+            const newArrayPomodoros = findAndModifyPomodoro(newTaskPomodoro)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -64,8 +66,8 @@ function reducer(state = INITIAL_STATE, action) {
             })
 
             // substituindo pomodoro sem a tarefa deletada
-            const newArrayPomodoros = state.pomodoros.map((obj) => (obj.indicator !== action.value.indicator) ?
-                obj : delTaskPomodoro(obj))
+            const newArrayPomodoros = findAndModifyPomodoro(delTaskPomodoro)
+
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
 
@@ -77,8 +79,8 @@ function reducer(state = INITIAL_STATE, action) {
             })
 
             // substituindo pomodoro sem a tarefa deletada
-            const newArrayPomodoros = state.pomodoros.map((obj) => (obj.indicator !== action.value.indicator) ?
-                obj : changeTaskPomodoro(obj))
+            const newArrayPomodoros = findAndModifyPomodoro(changeTaskPomodoro)
+
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
 
