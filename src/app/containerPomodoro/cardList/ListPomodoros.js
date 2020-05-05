@@ -33,9 +33,9 @@ function ListPomodoros({ array }) {
 
     return (
         <Container>
-            {array && array.map(obj => (
+            {array && array.map((obj, index) => (
                 <ItemList key={obj.indicator} icon={() => selectIcon(obj)} num={obj.indicator} text={obj.name} time={obj.time}
-                    onSelect={(event) => onSelect(event, obj)} onDelete={() => onDelete(obj)} />
+                    onSelect={(event) => onSelect(event, obj)} onDelete={(index !== 0) ? () => onDelete(obj) : undefined} /> // tirando o btn de del do primeiro pomodoro
             ))}
         </Container>
     )
