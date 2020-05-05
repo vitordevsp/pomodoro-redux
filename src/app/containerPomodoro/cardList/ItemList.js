@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import Text from '../../components/Text'
 import BtnIcon from '../../components/BtnIcon'
-import { MdCheckCircle, MdDeleteForever } from 'react-icons/md'
+import { MdDeleteForever } from 'react-icons/md'
 import Horizontal from '../../components/Horizontal'
 
 
-function ItemList({ num, text, time, onSelect, onDelete }) {
+function ItemList({ icon: Icon, num, text, time, onSelect, onDelete }) {
     return (
         <Card onClick={onSelect} name='cardItem' className='teste' width='100%' padding='0 12px' justify='space-between'>
             <Horizontal>
-                <MdCheckCircle size='24' color='#4EB089' />
+                {<Icon />}
                 <Text margin='0 0 0 12px'>{`${num} - ${text}`}</Text>
             </Horizontal>
 

@@ -28,7 +28,6 @@ function reducer(state = INITIAL_STATE, action) {
             obj : functionModify(obj))
     }
 
-
     switch (action.type) {
 
         // -------- Pomodoro ---------
@@ -39,6 +38,14 @@ function reducer(state = INITIAL_STATE, action) {
             const newArray = state.pomodoros
                 .filter(obj => obj.indicator !== action.value) // removendo pomodoro
                 .map((obj, index) => ({ ...obj, indicator: `#${++index}` })) // reorganizando a lista
+            return { ...state, pomodoros: [...newArray] }
+        }
+
+        case 'SELECT_POMODORO': {
+            const newArray = state.pomodoros.map(obj => ({
+                ...obj,
+                selected: (obj.indicator === action.value) ? true : false
+            }))
             return { ...state, pomodoros: [...newArray] }
         }
 

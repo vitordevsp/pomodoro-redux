@@ -22,7 +22,12 @@ const pomodoro = {
     del: (indicator) => ({
         type: 'DEL_POMODORO',
         value: indicator
-    })
+    }),
+
+    select: (indicator) => ({
+        type: 'SELECT_POMODORO',
+        value: indicator
+    }),
 }
 
 export default pomodoro
