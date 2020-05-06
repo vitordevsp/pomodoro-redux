@@ -15,7 +15,7 @@ function SelectedPomodoro({ obj }) {
         <Horizontal margin='0 16px'>
             <Text>Pomodoro: {`${obj.indicator} - ${obj.name}`}</Text>
             <Line />
-            <Text>{`${countToDoCompleted} - ${countToDo}`}</Text>
+            <Text nowrap>{`${countToDoCompleted} - ${countToDo}`}</Text>
         </Horizontal>
     )
 }
