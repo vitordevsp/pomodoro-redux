@@ -22,15 +22,19 @@ function ToDoList({ obj }) {
         }
     }
 
+    const changeDone = (indexTask) => {
+        dispatch(toDoList.change(obj.indicator, indexTask))
+    }
+
+    const openModal = (indicatorPomodoro, indexTask) => {
+        console.log(indicatorPomodoro, indexTask)
+    }
+
     const onDelete = (indexTask) => {
         const response = window.confirm('Excluir a Tarefa ?')
         if (!response) return
 
         dispatch(toDoList.del(obj.indicator, indexTask))
-    }
-
-    const changeDone = (indexTask) => {
-        dispatch(toDoList.change(obj.indicator, indexTask))
     }
 
 
@@ -41,9 +45,14 @@ function ToDoList({ obj }) {
             <Container>
                 {obj.toDoList.map((objToDo, index) => (
                     <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
-                        onDelete={() => onDelete(index)} changeDone={() => changeDone(index)} />
+                        changeDone={() => changeDone(index)}
+                        openModal={() => openModal(objToDo.indicator, index)}
+                        onDelete={() => onDelete(index)}
+                    />
                 ))}
             </Container>
+
+            {/* formSelectPomodoro */}
         </>
     )
 }
