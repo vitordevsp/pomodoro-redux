@@ -8,7 +8,7 @@ import BtnIcon from '../../../components/BtnIcon'
 
 function ItemList({ indicator, text, checked, openModal, onDelete, changeDone }) {
     return (
-        <Horizontal margin='10px 0 0'>
+        <Horizontal margin='0 0 10px'>
             <Card onClick={changeDone} padding='0 5px' cursor='pointer' selected={checked}>
                 {checked ?
                     <MdCheckBox size='26' color='#4EB089' /> :

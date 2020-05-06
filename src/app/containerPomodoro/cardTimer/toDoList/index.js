@@ -35,20 +35,24 @@ function ToDoList({ obj }) {
 
 
     return (
-        <Container>
-            <InputAdd id='inputTask' placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} />
+        <>
+            <InputAdd id='inputTask' placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} margin='12px 24px' />
 
-            {obj.toDoList.map((objToDo, index) => (
-                <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
-                    onDelete={() => onDelete(index)} changeDone={() => changeDone(index)} />
-            ))}
-        </Container>
+            <Container>
+                {obj.toDoList.map((objToDo, index) => (
+                    <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
+                        onDelete={() => onDelete(index)} changeDone={() => changeDone(index)} />
+                ))}
+            </Container>
+        </>
     )
 }
 
 const Container = styled.div`
-    margin: 12px 24px;
-    height: calc(100% - 216px);
+    margin: 0 20px;
+    padding: 0 4px;
+    height: calc(100% - 260px);
+    overflow-y: auto;
 `
 
 export default ToDoList
