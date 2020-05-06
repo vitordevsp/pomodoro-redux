@@ -72,7 +72,9 @@ function reducer(state = INITIAL_STATE, action) {
                 toDoList: [...obj.toDoList, action.value]
             })
 
-            const newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, action.value.indicator, newTaskPomodoro)
+            let newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, action.value.indicator, newTaskPomodoro)
+
+            newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, action.value.indicator, verifyCompletedPomodoro)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -81,12 +83,16 @@ function reducer(state = INITIAL_STATE, action) {
             return { ...state }
 
         case 'DEL_TASK': {
+            const { indexTask, indicator } = action.value
+
             const delTaskPomodoro = obj => ({
                 ...obj,
-                toDoList: obj.toDoList.filter((task, index) => index !== action.value.indexTask)
+                toDoList: obj.toDoList.filter((task, index) => index !== indexTask)
             })
 
-            const newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, action.value.indicator, delTaskPomodoro)
+            let newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, action.value.indicator, delTaskPomodoro)
+
+            newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -94,13 +100,13 @@ function reducer(state = INITIAL_STATE, action) {
         case 'CHANGE_DONE': {
             const { indexTask, indicator } = action.value
 
-            const changeTaskPomodoro = obj => ({
+            const changeDoneTaskPomodoro = obj => ({
                 ...obj,
                 toDoList: obj.toDoList.map((task, index) => (index !== indexTask) ?
                     task : { ...task, done: !task.done })
             })
 
-            let newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, indicator, changeTaskPomodoro)
+            let newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, indicator, changeDoneTaskPomodoro)
 
             newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
 
