@@ -20,6 +20,22 @@ const INITIAL_STATE = {
     ]
 }
 
+
+const findAndModifyPomodoro2 = (arrayPomodoros, indicator, functionModify) => {
+    return arrayPomodoros.map((obj) => (obj.indicator !== indicator) ?
+        obj : functionModify(obj))
+}
+
+const verifyCompletedPomodoro = obj => {
+    const objDoneFalse = !!obj.toDoList.find(task => task.done === false)
+    console.log('completed: ', objDoneFalse ? false : true)
+    return ({
+        ...obj,
+        completed: objDoneFalse ? false : true
+    })
+}
+
+
 function reducer(state = INITIAL_STATE, action) {
 
     // função generica que é usada varias vezes no ToDoList
@@ -87,14 +103,17 @@ function reducer(state = INITIAL_STATE, action) {
         }
 
         case 'CHANGE_DONE': {
+            const { indexTask, indicator } = action.value
+
             const changeTaskPomodoro = obj => ({
                 ...obj,
-                toDoList: obj.toDoList.map((task, index) => (index !== action.value.indexTask) ?
+                toDoList: obj.toDoList.map((task, index) => (index !== indexTask) ?
                     task : { ...task, done: !task.done })
             })
 
-            // substituindo pomodoro sem a tarefa deletada
-            const newArrayPomodoros = findAndModifyPomodoro(changeTaskPomodoro)
+            let newArrayPomodoros = findAndModifyPomodoro2(state.pomodoros, indicator, changeTaskPomodoro)
+
+            newArrayPomodoros = findAndModifyPomodoro2(newArrayPomodoros, indicator, verifyCompletedPomodoro)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }

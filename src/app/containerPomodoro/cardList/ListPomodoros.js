@@ -11,9 +11,9 @@ function ListPomodoros({ array }) {
     const dispatch = useDispatch()
 
     const selectIcon = obj => {
-        if (obj.completed) return <MdCheckCircle size='24' color='#4EB089' />
-
         if (obj.selected) return <MdArrowForward size='24' color='#004678' />
+        
+        if (obj.completed) return <MdCheckCircle size='24' color='#4EB089' />
 
         return <MdTimer size='24' color='#383838' />
     }
