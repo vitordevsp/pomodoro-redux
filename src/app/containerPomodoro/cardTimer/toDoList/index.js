@@ -4,12 +4,14 @@ import ItemList from './ItemList'
 import { useDispatch } from 'react-redux'
 import { toDoList } from '../../../../store/actions'
 import ContainerList from '../../../components/ContainerList'
+import ModalSelectPomodoro from './ModalSelectPomodoro'
 
 
 function ToDoList({ obj }) {
 
     const dispatch = useDispatch()
 
+    // --------- input add ---------
     const [newTask, setNewTask] = useState('')
 
     const onChange = event => setNewTask(event.target.value)
@@ -22,12 +24,9 @@ function ToDoList({ obj }) {
         }
     }
 
+    // --------- to Do List ---------
     const changeDone = (indexTask) => {
         dispatch(toDoList.change(obj.indicator, indexTask))
-    }
-
-    const openModal = (indicatorPomodoro, indexTask) => {
-        console.log(indicatorPomodoro, indexTask)
     }
 
     const onDelete = (indexTask) => {
@@ -37,22 +36,34 @@ function ToDoList({ obj }) {
         dispatch(toDoList.del(obj.indicator, indexTask))
     }
 
+    // --------- Modal Select Pomodoro ---------
+    const [modalOpen, setModalOpen] = useState(false)
+    const closeModal = () => setModalOpen(false)
+
+    const [selectedObject, setSelectedObject] = useState({ indicatorPomodoro: '', indexTask: 0, objTask: {} })
+
+    const openModal = (indexTask, objTask) => {
+        const indicatorPomodoro = obj.indicator
+        setSelectedObject({ indicatorPomodoro, indexTask, objTask })
+        setModalOpen(true)
+    }
+
 
     return (
         <>
             <InputAdd id='inputTask' placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} margin='12px 24px' />
 
             <ContainerList height='calc(100% - 265px)'>
-                {obj.toDoList.map((objToDo, index) => (
-                    <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
+                {obj.toDoList.map((objTask, index) => (
+                    <ItemList key={index} indicator={objTask.indicator} text={objTask.name} checked={objTask.done}
                         changeDone={() => changeDone(index)}
-                        openModal={() => openModal(objToDo.indicator, index)}
+                        openModal={() => openModal(index, objTask)}
                         onDelete={() => onDelete(index)}
                     />
                 ))}
             </ContainerList>
 
-            {/* formSelectPomodoro */}
+            {modalOpen && <ModalSelectPomodoro selectedObject={selectedObject} closeModal={closeModal} />}
         </>
     )
 }
