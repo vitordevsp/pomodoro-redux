@@ -1,9 +1,9 @@
 import React from 'react'
-import ItemList from './ItemList'
 import { useDispatch } from 'react-redux'
 import { pomodoro } from '../../../store/actions'
 import { MdCheckCircle, MdArrowForward, MdTimer } from 'react-icons/md'
 import ContainerList from '../../components/ContainerList'
+import ItemListPomodoro from '../../components/ItemListPomodoro'
 
 
 function ListPomodoros({ array }) {
@@ -34,7 +34,7 @@ function ListPomodoros({ array }) {
     return (
         <ContainerList height='calc(100% - 130px)' >
             {array && array.map((obj, index) => (
-                <ItemList key={obj.indicator} icon={() => selectIcon(obj)} num={obj.indicator} text={obj.name} time={obj.time}
+                <ItemListPomodoro key={obj.indicator} icon={() => selectIcon(obj)} num={obj.indicator} text={obj.name} time={obj.time}
                     onSelect={(event) => onSelect(event, obj)}
                     onDelete={(index !== 0) ? () => onDelete(obj) : undefined} /> // tirando o btn de del do primeiro pomodoro
             ))}

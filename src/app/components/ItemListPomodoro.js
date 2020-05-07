@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import Text from '../../components/Text'
-import BtnIcon from '../../components/BtnIcon'
 import { MdDeleteForever } from 'react-icons/md'
-import Horizontal from '../../components/Horizontal'
+import Horizontal from './Horizontal'
+import Text from './Text'
+import BtnIcon from './BtnIcon'
 
 
-function ItemList({ icon: Icon, num, text, time, onSelect, onDelete }) {
+function ItemListPomodoro({ icon: Icon, num, text, time, onSelect, onDelete }) {
     return (
         <Card onClick={onSelect} name='cardItem' className='teste' width='100%' padding='0 12px' justify='space-between'>
             <Horizontal>
-                {<Icon />}
+                {Icon && <Icon />}
                 <Text margin='0 0 0 12px'>{`${num} - ${text}`}</Text>
             </Horizontal>
 
@@ -59,4 +59,4 @@ const ContainerBtnDel = styled.div`
     :hover button svg { fill: #B50000; }
 `
 
-export default ItemList
+export default ItemListPomodoro
