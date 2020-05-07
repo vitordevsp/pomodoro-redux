@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { pomodoro } from '../../../store/actions'
 import { MdCheckCircle, MdArrowForward, MdTimer } from 'react-icons/md'
+import { pomodoro } from '../../../store/actions'
 import ContainerList from '../../components/ContainerList'
 import ItemListPomodoro from '../../components/ItemListPomodoro'
 
@@ -18,9 +18,13 @@ function ListPomodoros({ array }) {
         return <MdTimer size='24' color='#383838' />
     }
 
-    const onSelect = (event, obj) => {
-        // console.log(event.currentTarget.getAttribute('name'))
+    const onSelect = obj => {
         dispatch(pomodoro.select(obj.indicator))
+    }
+
+    const onEdit = (obj, newName) => {
+        if (obj.name === newName) return
+        dispatch(pomodoro.edit(obj.indicator, newName))
     }
 
     const onDelete = obj => {
@@ -35,7 +39,8 @@ function ListPomodoros({ array }) {
         <ContainerList height='calc(100% - 130px)' >
             {array && array.map((obj, index) => (
                 <ItemListPomodoro key={obj.indicator} icon={() => selectIcon(obj)} num={obj.indicator} text={obj.name} time={obj.time}
-                    onSelect={(event) => onSelect(event, obj)}
+                    onSelect={() => onSelect(obj)}
+                    onEdit={(newName) => onEdit(obj, newName)}
                     onDelete={(index !== 0) ? () => onDelete(obj) : undefined} /> // tirando o btn de del do primeiro pomodoro
             ))}
         </ContainerList >

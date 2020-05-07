@@ -1,17 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { MdDeleteForever } from 'react-icons/md'
 import Horizontal from './Horizontal'
 import Text from './Text'
 import BtnIcon from './BtnIcon'
+import InputNoBorder from './InputNoBorder'
 
 
-function ItemListPomodoro({ icon: Icon, num, text, time, onSelect, onDelete }) {
+function ItemListPomodoro({ icon: Icon, num, text, time, onSelect, onEdit, onDelete }) {
+
+    const [openEdit, setOpenEdit] = useState(false)
+    const [value, setValue] = useState(text)
+
+    const clickEdit = () => setOpenEdit(true)
+
+    const onChange = e => setValue(e.target.value)
+
+    const onBlur = () => {
+        onEdit(value)
+        setOpenEdit(false)
+    }
+
+
     return (
-        <Card onClick={onSelect} name='cardItem' className='teste'  padding='0 12px' justify='space-between'>
-            <Horizontal>
+        <Card onClick={onSelect} name='cardItem' className='teste' padding='0 12px' justify='space-between'>
+            <Horizontal width='100%'>
                 {Icon && <Icon />}
-                <Text margin='0 0 0 12px'>{`${num} - ${text}`}</Text>
+
+                <Text margin='0 8px 0 12px' nowrap>{`${num} - `}</Text>
+
+                {(onEdit && !openEdit) ?
+                    <Text onClick={clickEdit} cursor='text'>{text}</Text> :
+                    <InputNoBorder width='75%' placeholder='Pomodoro' value={value} onChange={onChange} onBlur={onBlur} autoFocus />
+                }
             </Horizontal>
 
             {time && <Text className='none' weight='300' size='1em'>{time}</Text>}
@@ -54,7 +75,6 @@ const Card = styled.div`
 
 const ContainerBtnDel = styled.div`
     button svg { transition: fill 500ms ease-out; }
-
     :hover button svg { fill: #B50000; }
 `
 
