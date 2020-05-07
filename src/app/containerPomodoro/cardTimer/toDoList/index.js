@@ -42,7 +42,7 @@ function ToDoList({ obj }) {
         <>
             <InputAdd id='inputTask' placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} margin='12px 24px' />
 
-            <ContainerList height='calc(100% - 26px)'>
+            <ContainerList height='calc(100% - 265px)'>
                 {obj.toDoList.map((objToDo, index) => (
                     <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
                         changeDone={() => changeDone(index)}
