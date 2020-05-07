@@ -31,6 +31,16 @@ const toDoList = {
             indexTask
         }
     }),
+
+    moving: (indicatorPomodoro, indexTask, objTask, newIndicator) => ({
+        type: 'MOVING_TASK',
+        value: {
+            indicatorPomodoro,
+            indexTask,
+            objTask,
+            newIndicator
+        }
+    }),
 }
 
 export default toDoList

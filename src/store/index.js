@@ -113,6 +113,31 @@ function reducer(state = INITIAL_STATE, action) {
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
 
+        case 'MOVING_TASK': {
+            const { indicatorPomodoro, indexTask, objTask, newIndicator } = action.value
+            objTask.indicator = newIndicator
+
+            // --------- Funcoes ----------
+            const newTaskPomodoro = obj => ({
+                ...obj,
+                toDoList: [...obj.toDoList, objTask]
+            })
+
+            const delTaskPomodoro = obj => ({
+                ...obj,
+                toDoList: obj.toDoList.filter((task, index) => index !== indexTask)
+            })
+
+            // --------- Funcoes ----------
+            let newArrayPomodoros = findAndModifyPomodoro(state.pomodoros, indicatorPomodoro, delTaskPomodoro)
+            newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, newIndicator, newTaskPomodoro)
+
+            newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicatorPomodoro, verifyCompletedPomodoro)
+            newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, newIndicator, verifyCompletedPomodoro)
+
+            return { ...state, pomodoros: [...newArrayPomodoros] }
+        }
+
         default:
             return state
     }
