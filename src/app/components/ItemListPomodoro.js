@@ -8,7 +8,7 @@ import BtnIcon from './BtnIcon'
 
 function ItemListPomodoro({ icon: Icon, num, text, time, onSelect, onDelete }) {
     return (
-        <Card onClick={onSelect} name='cardItem' className='teste' width='100%' padding='0 12px' justify='space-between'>
+        <Card onClick={onSelect} name='cardItem' className='teste'  padding='0 12px' justify='space-between'>
             <Horizontal>
                 {Icon && <Icon />}
                 <Text margin='0 0 0 12px'>{`${num} - ${text}`}</Text>
@@ -24,7 +24,6 @@ function ItemListPomodoro({ icon: Icon, num, text, time, onSelect, onDelete }) {
 }
 
 const Card = styled.div`
-    width: ${({ width = 'initial' }) => width};
     height: 44px;
     border-radius: 10px;
     background: #FFFFFF;
