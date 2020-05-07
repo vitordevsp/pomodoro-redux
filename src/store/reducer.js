@@ -105,7 +105,13 @@ function reducer(state = INITIAL_STATE, action) {
         }
 
         case 'EDIT_POMODORO': {
-            return { ...state }
+            const { indicator, name } = action.value
+
+            const editNamePomodoro = obj => ({ ...obj, name })
+
+            const newArray = findAndModifyPomodoro(state.pomodoros, indicator, editNamePomodoro)
+
+            return { ...state, pomodoros: [...newArray] }
         }
 
         case 'DEL_POMODORO': {

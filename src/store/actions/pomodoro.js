@@ -15,7 +15,7 @@ const pomodoro = {
         type: 'EDIT_POMODORO',
         value: {
             indicator,
-            name,
+            name
         }
     }),
 
