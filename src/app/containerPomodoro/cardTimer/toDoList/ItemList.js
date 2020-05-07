@@ -1,12 +1,27 @@
-import React from 'react'
-import Horizontal from '../../../components/Horizontal'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import Horizontal from '../../../components/Horizontal'
 import Text from '../../../components/Text'
 import { MdCheckBoxOutlineBlank, MdCheckBox, MdArrowDropDown, MdDeleteForever } from 'react-icons/md'
 import BtnIcon from '../../../components/BtnIcon'
+import InputNoBorder from '../../../components/InputNoBorder'
 
 
-function ItemList({ indicator, text, checked, openModal, onDelete, changeDone }) {
+function ItemList({ indicator, text, checked, openModal, onEdit, onDelete, changeDone }) {
+
+    const [openEdit, setOpenEdit] = useState(false)
+    const [value, setValue] = useState(text)
+
+    const clickEdit = () => setOpenEdit(true)
+
+    const onChange = e => setValue(e.target.value)
+
+    const onBlur = () => {
+        onEdit(value)
+        setOpenEdit(false)
+    }
+
+
     return (
         <Horizontal margin='0 0 10px'>
             <Card onClick={changeDone} padding='0 5px' cursor='pointer' selected={checked}>
@@ -22,7 +37,10 @@ function ItemList({ indicator, text, checked, openModal, onDelete, changeDone })
             </Card>
 
             <Card className='teste' width='100%' padding='0 4px 0 12px' justify='space-between' selected={checked} hidden>
-                <Text scratched={checked}>{text}</Text>
+                {(onEdit && !openEdit) ?
+                    <Text onClick={clickEdit} scratched={checked} cursor='text'>{text}</Text> :
+                    <InputNoBorder placeholder='Tarefa' value={value} onChange={onChange} onBlur={onBlur} autoFocus />
+                }
 
                 <ContainerbtnDel className='hide'>
                     <BtnIcon onClick={onDelete}> <MdDeleteForever size='24' color='#303030' /> </BtnIcon>

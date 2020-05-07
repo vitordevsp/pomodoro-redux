@@ -29,6 +29,12 @@ function ToDoList({ obj }) {
         dispatch(toDoList.change(obj.indicator, indexTask))
     }
 
+    const onEdit = (indexTask, newTxtTask) => {
+        console.log('---onEdit---')
+        console.log(obj.indicator, indexTask, newTxtTask)
+        // dispatch(toDoList.del(obj.indicator, indexTask, newTxtTask))
+    }
+
     const onDelete = (indexTask) => {
         const response = window.confirm('Excluir a Tarefa ?')
         if (!response) return
@@ -58,6 +64,7 @@ function ToDoList({ obj }) {
                     <ItemList key={index} indicator={objTask.indicator} text={objTask.name} checked={objTask.done}
                         changeDone={() => changeDone(index)}
                         openModal={() => openModal(index, objTask)}
+                        onEdit={newTxtTask => onEdit(index, newTxtTask)}
                         onDelete={() => onDelete(index)}
                     />
                 ))}
