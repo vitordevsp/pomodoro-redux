@@ -29,10 +29,9 @@ function ToDoList({ obj }) {
         dispatch(toDoList.change(obj.indicator, indexTask))
     }
 
-    const onEdit = (indexTask, newTxtTask) => {
-        console.log('---onEdit---')
-        console.log(obj.indicator, indexTask, newTxtTask)
-        // dispatch(toDoList.del(obj.indicator, indexTask, newTxtTask))
+    const onEdit = (indexTask, newNameTask) => {
+        if (obj.toDoList[indexTask].name === newNameTask) return
+        dispatch(toDoList.edit(obj.indicator, indexTask, newNameTask))
     }
 
     const onDelete = (indexTask) => {
@@ -61,10 +60,10 @@ function ToDoList({ obj }) {
 
             <ContainerList height='calc(100% - 265px)'>
                 {obj.toDoList.map((objTask, index) => (
-                    <ItemList key={index} indicator={objTask.indicator} text={objTask.name} checked={objTask.done}
+                    <ItemList key={`${index}+${objTask.indicator}`} indicator={objTask.indicator} text={objTask.name} checked={objTask.done}
                         changeDone={() => changeDone(index)}
                         openModal={() => openModal(index, objTask)}
-                        onEdit={newTxtTask => onEdit(index, newTxtTask)}
+                        onEdit={newNameTask => onEdit(index, newNameTask)}
                         onDelete={() => onDelete(index)}
                     />
                 ))}

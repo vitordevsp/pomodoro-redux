@@ -8,11 +8,12 @@ const toDoList = {
         }
     }),
 
-    edit: (indicator, name) => ({
+    edit: (indicator, indexTask, newNameTask) => ({
         type: 'EDIT_TASK',
         value: {
             indicator,
-            name,
+            indexTask,
+            newNameTask
         }
     }),
 

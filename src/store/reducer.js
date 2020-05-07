@@ -44,8 +44,18 @@ const toDo = {
         return newArrayPomodoros
     },
 
-    editTask: () => {
+    editTask: (indicator, indexTask, newNameTask, arrayPomodoros) => {
+        const editTaskPomodoro = obj => ({
+            ...obj,
+            toDoList: obj.toDoList.map((task, index) => (index !== indexTask) ?
+                task : { ...task, name: newNameTask })
+        })
 
+        let newArrayPomodoros = findAndModifyPomodoro(arrayPomodoros, indicator, editTaskPomodoro)
+
+        newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
+
+        return newArrayPomodoros
     },
 
     delTask: (indexTask, indicator, arrayPomodoros) => {
@@ -133,7 +143,12 @@ function reducer(state = INITIAL_STATE, action) {
         }
 
         case 'EDIT_TASK': {
-            return { ...state }
+            const { indicator, indexTask, newNameTask } = action.value
+            const arrayPomodoros = state.pomodoros
+
+            const newArrayPomodoros = toDo.editTask(indicator, indexTask, newNameTask, arrayPomodoros)
+
+            return { ...state, pomodoros: [...newArrayPomodoros] }
         }
 
         case 'DEL_TASK': {
