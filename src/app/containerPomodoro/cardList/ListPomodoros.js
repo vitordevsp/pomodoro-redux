@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import ItemList from './ItemList'
 import { useDispatch } from 'react-redux'
 import { pomodoro } from '../../../store/actions'
 import { MdCheckCircle, MdArrowForward, MdTimer } from 'react-icons/md'
+import ContainerList from '../../components/ContainerList'
 
 
 function ListPomodoros({ array }) {
@@ -12,7 +12,7 @@ function ListPomodoros({ array }) {
 
     const selectIcon = obj => {
         if (obj.selected) return <MdArrowForward size='24' color='#004678' />
-        
+
         if (obj.completed) return <MdCheckCircle size='24' color='#4EB089' />
 
         return <MdTimer size='24' color='#383838' />
@@ -32,18 +32,15 @@ function ListPomodoros({ array }) {
 
 
     return (
-        <Container>
+        <ContainerList height='calc(100% - 130px)' >
             {array && array.map((obj, index) => (
                 <ItemList key={obj.indicator} icon={() => selectIcon(obj)} num={obj.indicator} text={obj.name} time={obj.time}
-                    onSelect={(event) => onSelect(event, obj)} onDelete={(index !== 0) ? () => onDelete(obj) : undefined} /> // tirando o btn de del do primeiro pomodoro
+                    onSelect={(event) => onSelect(event, obj)}
+                    onDelete={(index !== 0) ? () => onDelete(obj) : undefined} /> // tirando o btn de del do primeiro pomodoro
             ))}
-        </Container>
+        </ContainerList >
     )
 }
 
-const Container = styled.div`
-    margin: 12px 24px;
-    height: calc(100% - 130px);
-`
 
 export default ListPomodoros

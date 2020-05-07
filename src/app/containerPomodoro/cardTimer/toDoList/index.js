@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import InputAdd from '../../../components/InputAdd'
 import ItemList from './ItemList'
 import { useDispatch } from 'react-redux'
 import { toDoList } from '../../../../store/actions'
+import ContainerList from '../../../components/ContainerList'
 
 
 function ToDoList({ obj }) {
@@ -42,7 +42,7 @@ function ToDoList({ obj }) {
         <>
             <InputAdd id='inputTask' placeholder='Nova Tarefa: ' value={newTask} onChange={onChange} onClickAdd={onClickAdd} margin='12px 24px' />
 
-            <Container>
+            <ContainerList height='calc(100% - 26px)'>
                 {obj.toDoList.map((objToDo, index) => (
                     <ItemList key={index} indicator={objToDo.indicator} text={objToDo.name} checked={objToDo.done}
                         changeDone={() => changeDone(index)}
@@ -50,18 +50,12 @@ function ToDoList({ obj }) {
                         onDelete={() => onDelete(index)}
                     />
                 ))}
-            </Container>
+            </ContainerList>
 
             {/* formSelectPomodoro */}
         </>
     )
 }
 
-const Container = styled.div`
-    margin: 0 20px;
-    padding: 0 4px;
-    height: calc(100% - 260px);
-    overflow-y: auto;
-`
 
 export default ToDoList
