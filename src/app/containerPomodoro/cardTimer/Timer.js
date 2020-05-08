@@ -6,6 +6,8 @@ import BtnIcon from '../../components/BtnIcon'
 import Button from '../../components/Button'
 
 
+const editTitle = newTitle => document.title = newTitle
+
 const convertTimer = {
     int: (timer) => {
         const arrayTimer = timer.split(':')
@@ -25,7 +27,18 @@ const convertTimer = {
     }
 }
 
-const editTitle = newTitle => document.title = newTitle
+const timerDecrement = time => {
+    let { min, seg } = convertTimer.int(time)
+
+    if (seg === 0) {
+        min -= 1;
+        seg = 60;
+    }
+
+    seg -= 1
+
+    return { min, seg }
+}
 
 
 function Timer({ obj }) {
@@ -37,12 +50,9 @@ function Timer({ obj }) {
 
 
     // ------------- Timer Functions -------------  
-    const timerDecrement = () => setTimer(time => {
-        let { min, seg } = convertTimer.int(time)
+    const changeTimer = () => setTimer(time => {
 
-        if (seg === 0) { min -= 1; seg = 60; }
-
-        seg -= 1
+        const { min, seg } = timerDecrement(time)
 
         if (min <= 0) console.log('tocar alerta')
 
@@ -56,7 +66,7 @@ function Timer({ obj }) {
     const startTimer = () => {
         if (idInterval !== '') return
 
-        const id = setInterval(timerDecrement, 1000)
+        const id = setInterval(changeTimer, 1000)
         setIdInterval(id)
         setReset(false)
     }
