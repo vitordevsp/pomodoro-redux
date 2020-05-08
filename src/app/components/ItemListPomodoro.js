@@ -29,9 +29,9 @@ function ItemListPomodoro({ icon: Icon, num, text, time, onSelect, onEdit, onDel
 
                 <Text margin='0 8px 0 12px' nowrap>{`${num} - `}</Text>
 
-                {(onEdit && !openEdit) ?
-                    <Text onClick={clickEdit} cursor='text'>{text}</Text> :
-                    <InputNoBorder width='75%' placeholder='Pomodoro' value={value} onChange={onChange} onBlur={onBlur} autoFocus />
+                {(onEdit && openEdit) ?
+                    <InputNoBorder width='75%' placeholder='Pomodoro' value={value} onChange={onChange} onBlur={onBlur} autoFocus /> :
+                    <Text onClick={clickEdit} cursor='text'>{text}</Text>
                 }
             </Horizontal>
 
