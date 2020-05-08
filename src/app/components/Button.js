@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-function Button({ background, color, text }) {
+function Button({ text, ...props }) {
     return (
-        <Btn background={background} color={color}>{text}</Btn>
+        <Btn {...props}>{text}</Btn>
     )
 }
 
