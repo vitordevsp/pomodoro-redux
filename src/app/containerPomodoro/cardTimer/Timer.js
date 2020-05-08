@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { MdEdit } from 'react-icons/md' // MdDone
 import Horizontal from '../../components/Horizontal'
@@ -25,6 +25,8 @@ const convertTimer = {
     }
 }
 
+const editTitle = newTitle => document.title = newTitle
+
 
 function Timer({ obj }) {
 
@@ -44,9 +46,9 @@ function Timer({ obj }) {
 
         if (min <= 0) console.log('tocar alerta')
 
-        // atualizar o titulo da pagina
         const newTimer = convertTimer.string(min, seg)
-        document.title = `${obj.indicator} - ${newTimer}`
+
+        editTitle(`${obj.indicator} - ${newTimer}`)
 
         return newTimer
     })
@@ -67,6 +69,7 @@ function Timer({ obj }) {
 
     const resetTimer = () => {
         setTimer(initialTimer)
+        editTitle('Pomodoro')
         setReset(false)
     }
 
