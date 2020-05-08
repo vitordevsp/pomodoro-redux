@@ -20,7 +20,7 @@ const convertTimer = {
 
     string: (min, seg) => {
 
-        if (min < 10) min = `0${min}`
+        if (min < 10 && min >= 0) min = `0${min}`
         if (seg < 10) seg = `0${seg}`
 
         return `${min}:${seg}`
@@ -43,7 +43,8 @@ const timerDecrement = time => {
 
 function Timer({ obj }) {
 
-    const initialTimer = '25:00'
+    const initialTimer = '0:05'
+    // const initialTimer = '25:00'
     const [timer, setTimer] = useState(initialTimer)
     const [idInterval, setIdInterval] = useState('')
     const [reset, setReset] = useState(false)
