@@ -28,10 +28,10 @@ const convertTimer = {
 
 function Timer({ obj }) {
 
-    const [timer, setTimer] = useState('25:00')
+    const initialTimer = '25:00'
+    const [timer, setTimer] = useState(initialTimer)
     const [idInterval, setIdInterval] = useState('')
-
-    useEffect(() => { }, [obj, timer])
+    const [reset, setReset] = useState(false)
 
 
     // ------------- Timer Functions -------------  
@@ -56,11 +56,18 @@ function Timer({ obj }) {
 
         const id = setInterval(timerDecrement, 1000)
         setIdInterval(id)
+        setReset(false)
     }
 
     const pauseTimer = () => {
         clearTimeout(idInterval)
         setIdInterval('')
+        if (timer !== initialTimer) setReset(true)
+    }
+
+    const resetTimer = () => {
+        setTimer(initialTimer)
+        setReset(false)
     }
 
 
@@ -80,7 +87,10 @@ function Timer({ obj }) {
 
             <Horizontal>
                 <Button onClick={startTimer} text='INICIAR' background='#4EB089' color='white' />
-                <Button onClick={pauseTimer} text='PARAR' />
+                {(reset) ?
+                    <Button onClick={resetTimer} text='ZERAR' /> :
+                    <Button onClick={pauseTimer} text='PARAR' />
+                }
             </Horizontal>
         </Container>
     )
