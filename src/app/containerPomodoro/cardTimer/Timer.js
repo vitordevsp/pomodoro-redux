@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { MdEdit } from 'react-icons/md' // MdDone
 import Horizontal from '../../components/Horizontal'
@@ -6,7 +6,7 @@ import BtnIcon from '../../components/BtnIcon'
 import Button from '../../components/Button'
 
 
-const editTitle = newTitle => document.title = newTitle
+const setPageTitle = newTitle => document.title = newTitle
 
 const convertTimer = {
     int: (timer) => {
@@ -43,11 +43,11 @@ const timerDecrement = time => {
 
 function Timer({ obj }) {
 
-    const initialTimer = '0:05'
-    // const initialTimer = '25:00'
+    const initialTimer = '00:05' // '25:00'
     const [timer, setTimer] = useState(initialTimer)
     const [idInterval, setIdInterval] = useState('')
     const [reset, setReset] = useState(false)
+    const [conclude, setConclude] = useState(false)
 
 
     // ------------- Timer Functions -------------  
@@ -55,17 +55,21 @@ function Timer({ obj }) {
 
         const { min, seg } = timerDecrement(time)
 
-        if (min <= 0) console.log('tocar alerta')
+        if (min <= 0 && seg === 0) {
+            console.log('tocar alerta, seg: ', seg)
+            setConclude(true)
+        }
 
         const newTimer = convertTimer.string(min, seg)
 
-        editTitle(`${obj.indicator} - ${newTimer}`)
+        setPageTitle(`${obj.indicator}) ${newTimer}`)
 
         return newTimer
     })
 
     const startTimer = () => {
         if (idInterval !== '') return
+        if (timer.slice(0, 1) === '-') setConclude(true)
 
         const id = setInterval(changeTimer, 1000)
         setIdInterval(id)
@@ -76,12 +80,20 @@ function Timer({ obj }) {
         clearTimeout(idInterval)
         setIdInterval('')
         if (timer !== initialTimer) setReset(true)
+        setConclude(false)
     }
 
     const resetTimer = () => {
+        clearTimeout(idInterval)
         setTimer(initialTimer)
-        editTitle('Pomodoro')
+        setPageTitle('Pomodoro')
         setReset(false)
+        setConclude(false)
+    }
+
+    const concludePomodoro = () => {
+        console.log('concludePomodoro: ', timer)
+        resetTimer()
     }
 
 
@@ -100,7 +112,11 @@ function Timer({ obj }) {
             </Horizontal>
 
             <Horizontal>
-                <Button onClick={startTimer} text='INICIAR' background='#4EB089' color='white' />
+                {(conclude) ?
+                    <Button onClick={concludePomodoro} text='CONCLUIR' background='#4EB089' color='white' /> :
+                    <Button onClick={startTimer} text='INICIAR' background='#4EB089' color='white' />
+                }
+
                 {(reset) ?
                     <Button onClick={resetTimer} text='ZERAR' /> :
                     <Button onClick={pauseTimer} text='PARAR' />
