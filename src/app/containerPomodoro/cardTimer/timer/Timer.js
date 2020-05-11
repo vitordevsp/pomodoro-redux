@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { MdAlarm } from 'react-icons/md' // MdAlarmOff
+import { MdSettings, MdAlarm } from 'react-icons/md' // MdAlarmOff
 import { useDispatch } from 'react-redux'
 import { pomodoro } from '../../../../store/actions'
 import Horizontal from '../../../components/Horizontal'
@@ -67,7 +67,7 @@ function Timer({ obj }) {
         }
 
         if (oldObj.indicator !== obj.indicator) {
-            setTimer(obj.time || initialTimer)
+            setTimer(obj.time || objTimer.pomodoro)
             setOldObj(obj)
         }
     }, [obj])
@@ -76,18 +76,32 @@ function Timer({ obj }) {
     const dispatch = useDispatch()
 
 
-    // ------------- ModalTimer -------------  
-    const initialTimer = '25:00'
-    const initialTimerRest = '05:00'
-
+    // ------------- Modal Timer -------------  
     const [modalTimer, setModalTimer] = useState(false)
     const openModalTimer = () => setModalTimer(true)
     const closeModalTimer = () => setModalTimer(false)
 
+    const [objTimer, setObjTimer] = useState({
+        pomodoro: localStorage.getItem('pomodoro') || '25:00',
+        rest: localStorage.getItem('rest') || '05:00'
+    })
+
+    const defineObjTimer = (pomodoroTime = '25:00', restTime = '05:00') => {
+        const pomodoro = pomodoroTime
+        const rest = restTime
+
+        localStorage.setItem('pomodoro', pomodoro)
+        localStorage.setItem('rest', rest)
+
+        setObjTimer({ pomodoro, rest })
+
+        if (idInterval === '') setTimer(pomodoro)
+    }
+
 
     // ------------- Timer State -------------  
     const [oldObj, setOldObj] = useState(obj)
-    const [timer, setTimer] = useState(initialTimer)
+    const [timer, setTimer] = useState(objTimer.pomodoro)
     const [idInterval, setIdInterval] = useState('')
     const [reset, setReset] = useState(false)
     const [conclude, setConclude] = useState(false)
@@ -122,21 +136,21 @@ function Timer({ obj }) {
     const pauseTimer = () => {
         clearTimeout(idInterval)
         setIdInterval('')
-        if (timer !== initialTimer) setReset(true)
+        if (timer !== objTimer.pomodoro) setReset(true)
         setConclude(false)
     }
 
     const resetTimer = () => {
         clearTimeout(idInterval)
         setIdInterval('')
-        setTimer(initialTimer)
+        setTimer(objTimer.pomodoro)
         setPageTitle('Pomodoro')
         setReset(false)
         setConclude(false)
     }
 
     const concludePomodoro = () => {
-        const time = calcTimer(timer, initialTimer)
+        const time = calcTimer(timer, objTimer.pomodoro)
         dispatch(pomodoro.time(obj.indicator, time, true))
         resetTimer()
     }
@@ -144,16 +158,18 @@ function Timer({ obj }) {
 
     return (
         <Container>
-            <Horizontal margin='0 0 20px 80px' position='relative'>
-                <h2>{timer}</h2>
-
-                <BtnIcon onClick={openModalTimer} margin='0 0 0 26px' width='36px' height='36px' background='#F5F5F5' shadow>
-                    <MdAlarm size='24' />
+            <Horizontal width='100%' margin='0 0 20px 0' justify='center' position='relative'>
+                <BtnIcon onClick={openModalTimer} className='settings' width='36px' height='36px' background='#F5F5F5' shadow>
+                    <MdSettings size='24' />
                 </BtnIcon>
 
-                {/* <BtnIcon margin='0 0 0 26px' width='36px' height='36px' background='#F5F5F5' shadow>
-                    <MdEdit size='24' />
-                </BtnIcon> */}
+                <Horizontal position='relative'>
+                    <h2>{timer}</h2>
+
+                    <BtnIcon className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
+                        <MdAlarm size='24' />
+                    </BtnIcon>
+                </Horizontal>
             </Horizontal>
 
             <Horizontal>
@@ -168,7 +184,7 @@ function Timer({ obj }) {
                 }
             </Horizontal>
 
-            {modalTimer && <ModalEditTimer closeModal={closeModalTimer} />}
+            {modalTimer && <ModalEditTimer closeModal={closeModalTimer} objTimer={objTimer} defineObjTimer={defineObjTimer} convertTimer={convertTimer} />}
         </Container>
     )
 }
@@ -185,6 +201,16 @@ const Container = styled.div`
         font-family: monospace; 
         font-size: 44px;
         cursor: default;
+    }
+
+    .settings {
+        position: absolute;
+        top: -10px; left: 14px;
+    }
+
+    .clock {
+        position: absolute;
+        top: 5px; right: -55px;
     }
 `
 
