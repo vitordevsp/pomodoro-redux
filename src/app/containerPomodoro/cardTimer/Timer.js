@@ -4,6 +4,8 @@ import { MdEdit } from 'react-icons/md' // MdDone
 import Horizontal from '../../components/Horizontal'
 import BtnIcon from '../../components/BtnIcon'
 import Button from '../../components/Button'
+import { useDispatch } from 'react-redux'
+import { pomodoro } from '../../../store/actions'
 
 
 const setPageTitle = newTitle => document.title = newTitle
@@ -42,6 +44,15 @@ const timerDecrement = time => {
 
 
 function Timer({ obj }) {
+
+    const dispatch = useDispatch()
+
+    // const [oldObj, setOldObj] = useState(obj)
+
+    // useEffect(() => {
+    //     console.log('old: ', obj)
+    //     console.log('Novo: ', oldObj)
+    // }, [obj, oldObj])
 
     const initialTimer = '00:05' // '25:00'
     const [timer, setTimer] = useState(initialTimer)
@@ -85,6 +96,7 @@ function Timer({ obj }) {
 
     const resetTimer = () => {
         clearTimeout(idInterval)
+        setIdInterval('')
         setTimer(initialTimer)
         setPageTitle('Pomodoro')
         setReset(false)
@@ -92,7 +104,7 @@ function Timer({ obj }) {
     }
 
     const concludePomodoro = () => {
-        console.log('concludePomodoro: ', timer)
+        dispatch(pomodoro.time(obj.indicator, timer, true))
         resetTimer()
     }
 

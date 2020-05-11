@@ -28,6 +28,15 @@ const pomodoro = {
         type: 'SELECT_POMODORO',
         value: indicator
     }),
+
+    time: (indicator, time, completed = false) => ({
+        type: 'INSERT_TIME_POMODORO',
+        value: {
+            indicator,
+            time,
+            completed
+        }
+    }),
 }
 
 export default pomodoro

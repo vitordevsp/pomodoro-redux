@@ -137,6 +137,16 @@ function reducer(state = INITIAL_STATE, action) {
             return { ...state, pomodoros: [...newArray] }
         }
 
+        case 'INSERT_TIME_POMODORO': {
+            const { indicator, time, completed } = action.value
+
+            const insertTimePomodoro = obj => ({ ...obj, time, completed })
+
+            const newArray = findAndModifyPomodoro(state.pomodoros, indicator, insertTimePomodoro)
+
+            return { ...state, pomodoros: [...newArray] }
+        }
+
         // -------- ToDoList ---------
         case 'ADD_TASK': {
             const newObj = action.value
