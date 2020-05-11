@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { MdEdit } from 'react-icons/md' // MdDone
-import Horizontal from '../../components/Horizontal'
-import BtnIcon from '../../components/BtnIcon'
-import Button from '../../components/Button'
+import { MdAlarm } from 'react-icons/md' // MdAlarmOff
 import { useDispatch } from 'react-redux'
-import { pomodoro } from '../../../store/actions'
+import { pomodoro } from '../../../../store/actions'
+import Horizontal from '../../../components/Horizontal'
+import BtnIcon from '../../../components/BtnIcon'
+import Button from '../../../components/Button'
+import ModalEditTimer from './ModalEditTimer'
 
 
 const setPageTitle = newTitle => document.title = newTitle
@@ -74,8 +75,18 @@ function Timer({ obj }) {
 
     const dispatch = useDispatch()
 
+
+    // ------------- ModalTimer -------------  
+    const initialTimer = '25:00'
+    const initialTimerRest = '05:00'
+
+    const [modalTimer, setModalTimer] = useState(false)
+    const openModalTimer = () => setModalTimer(true)
+    const closeModalTimer = () => setModalTimer(false)
+
+
+    // ------------- Timer State -------------  
     const [oldObj, setOldObj] = useState(obj)
-    const initialTimer = '01:05' // '25:00'
     const [timer, setTimer] = useState(initialTimer)
     const [idInterval, setIdInterval] = useState('')
     const [reset, setReset] = useState(false)
@@ -136,12 +147,12 @@ function Timer({ obj }) {
             <Horizontal margin='0 0 20px 80px' position='relative'>
                 <h2>{timer}</h2>
 
-                <BtnIcon margin='0 0 0 26px' width='36px' height='36px' background='#F5F5F5' shadow>
-                    <MdEdit size='24' />
+                <BtnIcon onClick={openModalTimer} margin='0 0 0 26px' width='36px' height='36px' background='#F5F5F5' shadow>
+                    <MdAlarm size='24' />
                 </BtnIcon>
 
                 {/* <BtnIcon margin='0 0 0 26px' width='36px' height='36px' background='#F5F5F5' shadow>
-                    <MdDone size='24' />
+                    <MdEdit size='24' />
                 </BtnIcon> */}
             </Horizontal>
 
@@ -156,6 +167,8 @@ function Timer({ obj }) {
                     <Button onClick={pauseTimer} text='PARAR' />
                 }
             </Horizontal>
+
+            {modalTimer && <ModalEditTimer closeModal={closeModalTimer} />}
         </Container>
     )
 }

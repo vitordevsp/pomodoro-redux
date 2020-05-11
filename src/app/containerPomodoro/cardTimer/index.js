@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../../components/Card'
-import Timer from './Timer'
+import Timer from './timer'
 import SelectedPomodoro from './SelectedPomodoro'
 import ToDoList from './toDoList'
 import { useSelector } from 'react-redux'
