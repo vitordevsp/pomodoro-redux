@@ -105,6 +105,7 @@ function Timer({ obj }) {
     const [idInterval, setIdInterval] = useState('')
     const [reset, setReset] = useState(false)
     const [conclude, setConclude] = useState(false)
+    const [rest, setRest] = useState(false)
 
 
     // ------------- Timer Functions -------------  
@@ -143,16 +144,28 @@ function Timer({ obj }) {
     const resetTimer = () => {
         clearTimeout(idInterval)
         setIdInterval('')
-        setTimer(objTimer.pomodoro)
+        setTimer(rest ? objTimer.rest : objTimer.pomodoro)
         setPageTitle('Pomodoro')
         setReset(false)
         setConclude(false)
     }
 
     const concludePomodoro = () => {
-        const time = calcTimer(timer, objTimer.pomodoro)
-        dispatch(pomodoro.time(obj.indicator, time, true))
-        resetTimer()
+        if (!rest) {
+
+            const time = calcTimer(timer, objTimer.pomodoro)
+            dispatch(pomodoro.time(obj.indicator, time, true))
+            setRest(true)
+            resetTimer()
+            setTimer(objTimer.rest)
+
+        } else {
+            // passar para o proximo pomodoro
+            // dispatch(pomodoro.time(obj.indicator, time, true)) 
+            setRest(false)
+            resetTimer()
+            setTimer(objTimer.pomodoro)
+        }
     }
 
 
@@ -164,7 +177,7 @@ function Timer({ obj }) {
                 </BtnIcon>
 
                 <Horizontal position='relative'>
-                    <h2>{timer}</h2>
+                    <DisplayTimer rest={rest}>{timer}</DisplayTimer>
 
                     <BtnIcon className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
                         <MdAlarm size='24' />
@@ -196,13 +209,6 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     
-    h2 {
-        color: #343434;
-        font-family: monospace; 
-        font-size: 44px;
-        cursor: default;
-    }
-
     .settings {
         position: absolute;
         top: -10px; left: 14px;
@@ -212,6 +218,13 @@ const Container = styled.div`
         position: absolute;
         top: 5px; right: -55px;
     }
+`
+
+const DisplayTimer = styled.h2`
+    color: ${({ rest }) => !rest ? '#343434' : '#4EB089'};
+    font-family: monospace; 
+    font-size: 44px;
+    cursor: default;
 `
 
 export default Timer
