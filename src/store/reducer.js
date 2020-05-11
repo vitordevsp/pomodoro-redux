@@ -147,6 +147,26 @@ function reducer(state = INITIAL_STATE, action) {
             return { ...state, pomodoros: [...newArray] }
         }
 
+        case 'NEXT_POMODORO': {
+            const indicator = action.value
+            const arrayPomodoros = [...state.pomodoros]
+
+            const indexPomodoro = arrayPomodoros.findIndex(obj => obj.indicator === indicator)
+            const nextPomodoro = state.pomodoros[indexPomodoro + 1]
+
+            if (nextPomodoro) {
+
+                state.pomodoros[indexPomodoro].selected = false
+                state.pomodoros[indexPomodoro + 1].selected = true
+
+            } else {
+
+                alert('Todos os Pomodoros foram concluidos!!!')
+            }
+
+            return { ...state, pomodoros: arrayPomodoros }
+        }
+
         // -------- ToDoList ---------
         case 'ADD_TASK': {
             const newObj = action.value

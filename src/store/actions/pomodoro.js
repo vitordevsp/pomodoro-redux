@@ -37,6 +37,11 @@ const pomodoro = {
             completed
         }
     }),
+
+    next: (indicator) => ({
+        type: 'NEXT_POMODORO',
+        value: indicator
+    }),
 }
 
 export default pomodoro

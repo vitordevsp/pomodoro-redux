@@ -160,11 +160,11 @@ function Timer({ obj }) {
             setTimer(objTimer.rest)
 
         } else {
-            // passar para o proximo pomodoro
-            // dispatch(pomodoro.time(obj.indicator, time, true)) 
+
             setRest(false)
             resetTimer()
             setTimer(objTimer.pomodoro)
+            dispatch(pomodoro.next(obj.indicator))
         }
     }
 
