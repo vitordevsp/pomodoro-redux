@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { MdEdit } from 'react-icons/md' // MdDone
 import Horizontal from '../../components/Horizontal'
@@ -27,6 +27,20 @@ const convertTimer = {
 
         return `${min}:${seg}`
     }
+}
+
+const calcTimer = (timer, initialTimer) => {
+    const { min, seg } = convertTimer.int(timer)
+    const { min: minInit, seg: segInit } = convertTimer.int(initialTimer)
+
+    if (min < 0) {
+        const newMin = minInit + (min * -1 - 1)
+        const newSeg = segInit + (60 - seg)
+
+        return convertTimer.string(newMin, newSeg)
+    }
+
+    return initialTimer
 }
 
 const timerDecrement = time => {
@@ -61,7 +75,7 @@ function Timer({ obj }) {
     const dispatch = useDispatch()
 
     const [oldObj, setOldObj] = useState(obj)
-    const initialTimer = '00:05' // '25:00'
+    const initialTimer = '01:05' // '25:00'
     const [timer, setTimer] = useState(initialTimer)
     const [idInterval, setIdInterval] = useState('')
     const [reset, setReset] = useState(false)
@@ -111,7 +125,8 @@ function Timer({ obj }) {
     }
 
     const concludePomodoro = () => {
-        dispatch(pomodoro.time(obj.indicator, timer, true))
+        const time = calcTimer(timer, initialTimer)
+        dispatch(pomodoro.time(obj.indicator, time, true))
         resetTimer()
     }
 
