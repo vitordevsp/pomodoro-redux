@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { MdEdit } from 'react-icons/md' // MdDone
 import Horizontal from '../../components/Horizontal'
@@ -45,15 +45,22 @@ const timerDecrement = time => {
 
 function Timer({ obj }) {
 
+    useEffect(() => {
+        if (oldObj.indicator !== obj.indicator && idInterval !== '') {
+            dispatch(pomodoro.time(oldObj.indicator, timer, false))
+            resetTimer()
+        }
+
+        if (oldObj.indicator !== obj.indicator) {
+            setTimer(obj.time || initialTimer)
+            setOldObj(obj)
+        }
+    }, [obj])
+    // }, [dispatch, obj, oldObj, idInterval, resetTimer, timer])
+
     const dispatch = useDispatch()
 
-    // const [oldObj, setOldObj] = useState(obj)
-
-    // useEffect(() => {
-    //     console.log('old: ', obj)
-    //     console.log('Novo: ', oldObj)
-    // }, [obj, oldObj])
-
+    const [oldObj, setOldObj] = useState(obj)
     const initialTimer = '00:05' // '25:00'
     const [timer, setTimer] = useState(initialTimer)
     const [idInterval, setIdInterval] = useState('')
