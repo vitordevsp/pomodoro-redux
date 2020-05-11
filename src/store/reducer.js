@@ -131,7 +131,7 @@ function reducer(state = INITIAL_STATE, action) {
             }))
 
             // validando se selecionou, senão seleciona o ultimo
-            const pomodoroSelected = state.pomodoros.find(obj => obj.selected)
+            const pomodoroSelected = newArray.find(obj => obj.selected)
             if (!pomodoroSelected) newArray[newArray.length - 1].selected = true
 
             return { ...state, pomodoros: [...newArray] }
