@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { MdSettings, MdAlarm } from 'react-icons/md' // MdAlarmOff
+import { MdSettings, MdAlarm, MdAlarmOff } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { pomodoro } from '../../../../store/actions'
 import Horizontal from '../../../components/Horizontal'
@@ -107,6 +107,7 @@ function Timer({ obj }) {
     const [reset, setReset] = useState(false)
     const [conclude, setConclude] = useState(false)
     const [rest, setRest] = useState(false)
+    const [soundOn, setSoundOn] = useState(true)
 
 
     // ------------- Timer Functions -------------  
@@ -115,7 +116,7 @@ function Timer({ obj }) {
         const { min, seg } = timerDecrement(time)
 
         if (min <= 0 && seg === 0) {
-            soundAlert.play()
+            if (soundOn) soundAlert.play()
             setConclude(true)
         }
 
@@ -177,9 +178,7 @@ function Timer({ obj }) {
         teste.play()
     }
 
-    const emitirSom = () => {
-
-    }
+    const soundOnChange = () => setSoundOn(sound => !sound)
 
 
     return (
@@ -192,8 +191,11 @@ function Timer({ obj }) {
                 <Horizontal position='relative'>
                     <DisplayTimer rest={rest}>{timer}</DisplayTimer>
 
-                    <BtnIcon onClick={emitirSom} className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
-                        <MdAlarm size='24' />
+                    <BtnIcon onClick={soundOnChange} className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
+                        {soundOn ?
+                            <MdAlarm size='24' /> :
+                            <MdAlarmOff size='24' />
+                        }
                     </BtnIcon>
                 </Horizontal>
             </Horizontal>
