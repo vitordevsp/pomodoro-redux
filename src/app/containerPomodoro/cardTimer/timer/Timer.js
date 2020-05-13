@@ -100,6 +100,7 @@ function Timer({ obj }) {
 
 
     // ------------- Timer State -------------  
+    let soundAlert = new Audio('https://www.w3schools.com/html/horse.mp3')
     const [oldObj, setOldObj] = useState(obj)
     const [timer, setTimer] = useState(objTimer.pomodoro)
     const [idInterval, setIdInterval] = useState('')
@@ -114,7 +115,7 @@ function Timer({ obj }) {
         const { min, seg } = timerDecrement(time)
 
         if (min <= 0 && seg === 0) {
-            console.log('tocar alerta, seg: ', seg)
+            soundAlert.play()
             setConclude(true)
         }
 
@@ -168,6 +169,18 @@ function Timer({ obj }) {
         }
     }
 
+    const testeSound = () => {
+        let teste = new Audio('https://www.soundjay.com/button/sounds/beep-01a.mp3')
+        teste.preload = 'none'
+        teste.src = './alarm.ogg' // com essa linha comentada funciona
+        console.log(teste)
+        teste.play()
+    }
+
+    const emitirSom = () => {
+
+    }
+
 
     return (
         <Container>
@@ -179,7 +192,7 @@ function Timer({ obj }) {
                 <Horizontal position='relative'>
                     <DisplayTimer rest={rest}>{timer}</DisplayTimer>
 
-                    <BtnIcon className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
+                    <BtnIcon onClick={emitirSom} className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
                         <MdAlarm size='24' />
                     </BtnIcon>
                 </Horizontal>
