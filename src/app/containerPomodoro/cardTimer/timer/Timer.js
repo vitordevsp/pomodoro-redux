@@ -170,13 +170,14 @@ function Timer({ obj }) {
         }
     }
 
-    const testeSound = () => {
-        let teste = new Audio('https://www.soundjay.com/button/sounds/beep-01a.mp3')
-        teste.preload = 'none'
-        teste.src = './alarm.ogg' // com essa linha comentada funciona
-        console.log(teste)
-        teste.play()
-    }
+    // const testeSound = () => {
+    // let teste = new Audio('https://www.soundjay.com/button/sounds/beep-01a.mp3')
+    // teste.preload = 'none'
+    // teste.src = './alarm.ogg' // com essa linha comentada funciona
+    // const teste = document.getElementById('alarm')
+    // console.log(teste)
+    // teste.play()
+    // }
 
     const soundOnChange = () => setSoundOn(sound => !sound)
 
@@ -190,6 +191,11 @@ function Timer({ obj }) {
 
                 <Horizontal position='relative'>
                     <DisplayTimer rest={rest}>{timer}</DisplayTimer>
+
+                    {/* <audio id='alarm' controls>
+                        <source srcSet="./alarm.ogg" type="audio/ogg" />
+                        <source srcSet="./alarm.mp3" type="audio/mpeg" />
+                    </audio> */}
 
                     <BtnIcon onClick={soundOnChange} className='clock' width='36px' height='36px' background='#F5F5F5' shadow>
                         {soundOn ?
