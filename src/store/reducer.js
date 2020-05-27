@@ -1,99 +1,6 @@
-const INITIAL_STATE = {
-    pomodoros: [
-        {
-            indicator: '#1',
-            name: 'Primeiro pomodoro',
-            selected: true,
-            completed: false,
-            time: false,
-            toDoList: [
-                {
-                    done: false,
-                    indicator: '#1',
-                    name: 'Primeira tarefa',
-                }
-            ]
-        }
-    ]
-}
-
-
-const findAndModifyPomodoro = (arrayPomodoros, indicator, functionModify) => {
-    return arrayPomodoros.map((obj) => (obj.indicator !== indicator) ?
-        obj : functionModify(obj))
-}
-
-const verifyCompletedPomodoro = obj => {
-    const objDoneFalse = obj.toDoList.find(task => task.done === false)
-    return ({
-        ...obj,
-        completed: objDoneFalse ? false : true
-    })
-}
-
-const toDo = {
-    newTask: (newObj, indicator, arrayPomodoros) => {
-        const newTaskPomodoro = obj => ({
-            ...obj,
-            toDoList: [...obj.toDoList, newObj]
-        })
-
-        let newArrayPomodoros = findAndModifyPomodoro(arrayPomodoros, indicator, newTaskPomodoro)
-        newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
-
-        return newArrayPomodoros
-    },
-
-    editTask: (indicator, indexTask, newNameTask, arrayPomodoros) => {
-        const editTaskPomodoro = obj => ({
-            ...obj,
-            toDoList: obj.toDoList.map((task, index) => (index !== indexTask) ?
-                task : { ...task, name: newNameTask })
-        })
-
-        let newArrayPomodoros = findAndModifyPomodoro(arrayPomodoros, indicator, editTaskPomodoro)
-
-        newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
-
-        return newArrayPomodoros
-    },
-
-    delTask: (indexTask, indicator, arrayPomodoros) => {
-        const delTaskPomodoro = obj => ({
-            ...obj,
-            toDoList: obj.toDoList.filter((task, index) => index !== indexTask)
-        })
-
-        let newArrayPomodoros = findAndModifyPomodoro(arrayPomodoros, indicator, delTaskPomodoro)
-
-        newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
-
-        return newArrayPomodoros
-    },
-
-    changeDoneTask: (indexTask, indicator, arrayPomodoros) => {
-        const changeDoneTaskPomodoro = obj => ({
-            ...obj,
-            toDoList: obj.toDoList.map((task, index) => (index !== indexTask) ?
-                task : { ...task, done: !task.done })
-        })
-
-        let newArrayPomodoros = findAndModifyPomodoro(arrayPomodoros, indicator, changeDoneTaskPomodoro)
-
-        newArrayPomodoros = findAndModifyPomodoro(newArrayPomodoros, indicator, verifyCompletedPomodoro)
-
-        return newArrayPomodoros
-    },
-
-    movingTask: (indicator, indexTask, objTask, newIndicator, arrayPomodoros) => {
-        objTask.indicator = newIndicator
-
-        let newArrayPomodoros = toDo.delTask(indexTask, indicator, arrayPomodoros)
-        newArrayPomodoros = toDo.newTask(objTask, newIndicator, newArrayPomodoros)
-
-        return newArrayPomodoros
-    }
-}
+import INITIAL_STATE from './state'
+import { findAndModifyPomodoro } from "./helpers/pomodoroHelpers"
+import { newTask, editTask, delTask, changeDoneTask, movingTask } from './helpers/taskHelpers'
 
 
 function reducer(state = INITIAL_STATE, action) {
@@ -173,7 +80,7 @@ function reducer(state = INITIAL_STATE, action) {
             const indicator = action.value.indicator
             const arrayPomodoros = state.pomodoros
 
-            const newArrayPomodoros = toDo.newTask(newObj, indicator, arrayPomodoros)
+            const newArrayPomodoros = newTask(newObj, indicator, arrayPomodoros)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -182,7 +89,7 @@ function reducer(state = INITIAL_STATE, action) {
             const { indicator, indexTask, newNameTask } = action.value
             const arrayPomodoros = state.pomodoros
 
-            const newArrayPomodoros = toDo.editTask(indicator, indexTask, newNameTask, arrayPomodoros)
+            const newArrayPomodoros = editTask(indicator, indexTask, newNameTask, arrayPomodoros)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -191,7 +98,7 @@ function reducer(state = INITIAL_STATE, action) {
             const { indexTask, indicator } = action.value
             const arrayPomodoros = state.pomodoros
 
-            const newArrayPomodoros = toDo.delTask(indexTask, indicator, arrayPomodoros)
+            const newArrayPomodoros = delTask(indexTask, indicator, arrayPomodoros)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -200,7 +107,7 @@ function reducer(state = INITIAL_STATE, action) {
             const { indexTask, indicator } = action.value
             const arrayPomodoros = state.pomodoros
 
-            const newArrayPomodoros = toDo.changeDoneTask(indexTask, indicator, arrayPomodoros)
+            const newArrayPomodoros = changeDoneTask(indexTask, indicator, arrayPomodoros)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
@@ -209,7 +116,7 @@ function reducer(state = INITIAL_STATE, action) {
             const { indicatorPomodoro, indexTask, objTask, newIndicator } = action.value
             const arrayPomodoros = state.pomodoros
 
-            const newArrayPomodoros = toDo.movingTask(indicatorPomodoro, indexTask, objTask, newIndicator, arrayPomodoros)
+            const newArrayPomodoros = movingTask(indicatorPomodoro, indexTask, objTask, newIndicator, arrayPomodoros)
 
             return { ...state, pomodoros: [...newArrayPomodoros] }
         }
