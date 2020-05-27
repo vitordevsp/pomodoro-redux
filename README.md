@@ -12,7 +12,7 @@
 
 ## :dart: Objetivo do Projeto
 
-Um Pomodoro com um toDo integrado feito para praticar Redux.
+Um Pomodoro com um ToDoList integrado feito para praticar Redux.
 
 ## :page_with_curl: Sobre
 
@@ -55,9 +55,9 @@ A ideia inicial do projeto era fazer algo com um layout bonito, e o principal de
 
 ## :keyboard: Resultado
 
-:artificial_satellite: **GitHub Pages: [click aqui]()**
+:artificial_satellite: **GitHub Pages: [Click Aqui](https://devsp011.github.io/pomodoro-redux/)**
 
-:bookmark: **Referencia para o layout: [click aqui](https://dribbble.com/shots/11116733-Ramp-Instant)**
+:bookmark: **Referencia para o layout: [Click Aqui](https://dribbble.com/shots/11116733-Ramp-Instant)**
 
 ![](https://raw.githubusercontent.com/devsp011/pomodoro-redux/master/prints/print-pomodoro.png)
 
