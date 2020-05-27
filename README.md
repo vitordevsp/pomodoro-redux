@@ -63,7 +63,7 @@ A ideia inicial do projeto era fazer algo com um layout bonito, e o principal de
 
 ## :man_technologist: Redes Sociais
 
-* [instagram](https://www.instagram.com/devsp011/)
+* [Instagram](https://www.instagram.com/devsp011/)
 * [Linkedin](https://www.linkedin.com/in/vitor-sampaio-4532451a7/)
 
 ---
