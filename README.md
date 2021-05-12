@@ -1,12 +1,12 @@
 # 📌 Índice
 
-1. [Objetivo do Projeto](#dart-objetivo-do-projeto)
-2. [Sobre](#page_with_curl-sobre)
-3. [Tecnologias Utilizadas](#rocket-tecnologias-utilizadas)
-4. [Requisitos](#gear-requisitos)
-5. [Rodar o Projeto](#arrow_forward-rodar-o-projeto)
-6. [Resultado](#keyboard-resultado)
-7. [Redes Sociais](#man_technologist-redes-sociais)
+1. [Objetivo do Projeto](#-objetivo-do-projeto)
+2. [Sobre](#-sobre)
+3. [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+4. [Requisitos](#-requisitos)
+5. [Rodar o Projeto](#-rodar-o-projeto)
+6. [Resultado](#-resultado)
+7. [Redes Sociais](#-redes-sociais)
 
 ---
 
