@@ -1,4 +1,4 @@
-# :pushpin: índice
+# 📌 Índice
 
 1. [Objetivo do Projeto](#dart-objetivo-do-projeto)
 2. [Sobre](#page_with_curl-sobre)
@@ -10,15 +10,15 @@
 
 ---
 
-## :dart: Objetivo do Projeto
+## 🎯 Objetivo do Projeto
 
 Um Pomodoro com um ToDoList integrado feito para praticar Redux.
 
-## :page_with_curl: Sobre
+## 📃 Sobre
 
 A ideia inicial do projeto era fazer algo com um layout bonito, e o principal desafio do projeto seria trabalhar com Redux, que é algo muito interessante, poder gerenciar e separar o estado da aplicação da maneira que o Redux se propõe a fazer facilita muito as coisas, com certeza aplicarei em outros projetos.
 
-## :rocket: Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas
 
 * [React.js](https://pt-br.reactjs.org/)
 * [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
@@ -39,33 +39,32 @@ A ideia inicial do projeto era fazer algo com um layout bonito, e o principal de
 * [gh-pages](https://www.npmjs.com/package/gh-pages)
     - Usado para construir a aplicação React em um site estático numa branch especifica para ser usada no GitHub Pages.
 
-## :gear: Requisitos
+## ⚙️ Requisitos
 
 * [Git](https://git-scm.com/) (Para clonar, opcional)
 * [Node.js](https://nodejs.org/en/)
 * [Npm](https://www.npmjs.com/) (É instalado junto com o Node)
 
-## :arrow_forward: Rodar o Projeto
+## ▶️ Rodar o Projeto
 
 * Primeiro passo, clone o projeto em sua maquina
 * Abra a pasta do projeto no terminal
-* Instale as dependências com o comando `npm i` 
+* Instale as dependências com o comando `npm i`
 * Inicie o servidor com o comando `npm start` , uma nova aba ira se abrir no navegador, caso não ocorra
 * Abra uma aba no navegar e navegue para http://localhost:3000/
 
-## :keyboard: Resultado
+## ⌨️ Resultado
 
-:artificial_satellite: **GitHub Pages: [Click Aqui](https://devsp011.github.io/pomodoro-redux/)**
+🛰️ **GitHub Pages: [Click Aqui](https://vitordevsp.github.io/pomodoro-redux/)**
 
-:bookmark: **Referencia para o layout: [Click Aqui](https://dribbble.com/shots/11116733-Ramp-Instant)**
+🔖 **Referencia para o layout: [Click Aqui](https://dribbble.com/shots/11116733-Ramp-Instant)**
 
-![](https://raw.githubusercontent.com/devsp011/pomodoro-redux/master/prints/print-pomodoro.png)
+![](https://raw.githubusercontent.com/vitordevsp/pomodoro-redux/master/prints/print-pomodoro.png)
 
-## :man_technologist: Redes Sociais
+## 🧑🏽‍💻 Redes Sociais
 
-* [Instagram](https://www.instagram.com/devsp011/)
-* [Linkedin](https://www.linkedin.com/in/vitor-sampaio-4532451a7/)
+![](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&link=https://www.youtube.com/channel/UCFIHeoKduKPsE2m1oSiK9Mg) ![](https://img.shields.io/badge/Instagram-e64d5a?style=for-the-badge&logo=instagram&logoColor=white&link=https://www.instagram.com/vitordevsp/) ![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/vitordevsp/)
 
 ---
 
-<h5 align='center' >Feito com :purple_heart: por <a href="https://github.com/devsp011" target="_blank">DevSp</a> </h5>
+<h5 align='center' >Feito com 💙 por <a href="https://github.com/vitordevsp" target="_blank">Vitor DevSP</a> </h5>
