@@ -63,7 +63,17 @@ A ideia inicial do projeto era fazer algo com um layout bonito, e o principal de
 
 ## 🧑🏽‍💻 Redes Sociais
 
-![](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&link=https://www.youtube.com/channel/UCFIHeoKduKPsE2m1oSiK9Mg) ![](https://img.shields.io/badge/Instagram-e64d5a?style=for-the-badge&logo=instagram&logoColor=white&link=https://www.instagram.com/vitordevsp/) ![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/vitordevsp/)
+<a href="https://www.youtube.com/channel/UCFIHeoKduKPsE2m1oSiK9Mg">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="youtube" />
+</a>
+
+<a href="https://www.instagram.com/vitordevsp">
+    <img src="https://img.shields.io/badge/Instagram-e64d5a?style=for-the-badge&logo=instagram&logoColor=white" alt="instagram" />
+</a>
+
+<a href="https://www.linkedin.com/in/vitordevsp">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="instagram" />
+</a>
 
 ---
 
