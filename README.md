@@ -3,9 +3,9 @@
 1. [Objetivo do Projeto](#-objetivo-do-projeto)
 2. [Sobre](#-sobre)
 3. [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-4. [Requisitos](#-requisitos)
-5. [Rodar o Projeto](#-rodar-o-projeto)
-6. [Resultado](#-resultado)
+4. [Requisitos](#%EF%B8%8F-requisitos)
+5. [Rodar o Projeto](#%EF%B8%8F-rodar-o-projeto)
+6. [Resultado](#%EF%B8%8F-resultado)
 7. [Redes Sociais](#-redes-sociais)
 
 ---
