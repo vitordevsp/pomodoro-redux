@@ -1,24 +1,22 @@
 import React from 'react'
-import GlobalStyle from './GlobalStyle'
+import { Provider } from 'react-redux'
+
+import store from '../store'
 import Header from './Header'
 import ContainerPomodoro from './containerPomodoro'
-
-import { Provider } from 'react-redux'
-import store from '../store'
-
+import GlobalStyle from './GlobalStyle'
 
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <Header />
-                <ContainerPomodoro />
-            </Provider>
+  return (
+    <>
+      <Provider store={store}>
+        <Header />
+        <ContainerPomodoro />
+      </Provider>
 
-            <GlobalStyle />
-        </>
-    )
+      <GlobalStyle />
+    </>
+  )
 }
-
 
 export default App

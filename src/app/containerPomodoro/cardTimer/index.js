@@ -1,25 +1,22 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 import Card from '../../components/Card'
 import Timer from './timer'
 import SelectedPomodoro from './SelectedPomodoro'
 import ToDoList from './toDoList'
-import { useSelector } from 'react-redux'
-
 
 function CardTimer() {
+  const array = useSelector((state) => state.pomodoros)
+  const pomodoroSelected = array.find((obj) => obj.selected)
 
-    const array = useSelector(state => state.pomodoros)
-    const pomodoroSelected = array.find(obj => obj.selected)
-
-
-    return (
-        <Card>
-            <Timer obj={pomodoroSelected} />
-            <SelectedPomodoro obj={pomodoroSelected} />
-            <ToDoList obj={pomodoroSelected} />
-        </Card>
-    )
+  return (
+    <Card>
+      <Timer obj={pomodoroSelected} />
+      <SelectedPomodoro obj={pomodoroSelected} />
+      <ToDoList obj={pomodoroSelected} />
+    </Card>
+  )
 }
-
 
 export default CardTimer
