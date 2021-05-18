@@ -4,11 +4,11 @@ const findAndModifyPomodoro = (arrayPomodoros, indicator, functionModify) =>
   )
 
 const verifyCompletedPomodoro = (obj) => {
-  const objDoneFalse = obj.toDoList.find((task) => task.done === false)
+  const objDone = obj.toDoList.find((task) => task.done === false)
 
   return {
     ...obj,
-    completed: !objDoneFalse,
+    completed: !objDone,
   }
 }
 
