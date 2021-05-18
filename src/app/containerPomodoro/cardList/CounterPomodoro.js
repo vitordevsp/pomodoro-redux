@@ -10,9 +10,7 @@ function CounterPomodoro({ array }) {
   return (
     <Horizontal margin="20px" justify="space-between">
       <Text>Objetivo diario: </Text>
-      <Text nowrap>
-        {`${countPomodoroCompleted} - ${countPomodoro}`}
-      </Text>
+      <Text nowrap>{`${countPomodoroCompleted} - ${countPomodoro}`}</Text>
     </Horizontal>
   )
 }

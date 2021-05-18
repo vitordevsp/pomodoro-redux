@@ -25,7 +25,9 @@ function ModalSelectPomodoro({ selectedObject, closeModal }) {
 
   const onSelect = (obj) => {
     const newIndicator = obj.indicator
-    dispatch(toDoList.moving(indicatorPomodoro, indexTask, objTask, newIndicator))
+    dispatch(
+      toDoList.moving(indicatorPomodoro, indexTask, objTask, newIndicator),
+    )
     closeModal()
   }
 
@@ -37,19 +39,22 @@ function ModalSelectPomodoro({ selectedObject, closeModal }) {
             <MdClose size="28" color="#303030" />
           </BtnIcon>
 
-          <Text size="1.4em" weight="700" margin="0 16px">Mudar tarefa de Pomodoro</Text>
+          <Text size="1.4em" weight="700" margin="0 16px">
+            Mudar tarefa de Pomodoro
+          </Text>
         </Horizontal>
 
         <ContainerList height="calc(100% - 85px)">
-          {array && array.map((obj) => (
-            <ItemListPomodoro
-              key={obj.indicator}
-              icon={() => selectIcon(obj)}
-              num={obj.indicator}
-              text={obj.name}
-              onSelect={() => onSelect(obj)}
-            />
-          ))}
+          {array &&
+            array.map((obj) => (
+              <ItemListPomodoro
+                key={obj.indicator}
+                icon={() => selectIcon(obj)}
+                num={obj.indicator}
+                text={obj.name}
+                onSelect={() => onSelect(obj)}
+              />
+            ))}
         </ContainerList>
       </Card>
     </Modal>
@@ -57,15 +62,23 @@ function ModalSelectPomodoro({ selectedObject, closeModal }) {
 }
 
 const Modal = styled.section`
-  background-color: rgba(0, 0, 0, .5);
-  position: absolute; z-index: 10;
-  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  div[name=cardItem] svg { transition: fill 500ms ease; }
-  div[name=cardItem]:hover svg { fill: #199110; }
+  div[name='cardItem'] svg {
+    transition: fill 500ms ease;
+  }
+  div[name='cardItem']:hover svg {
+    fill: #199110;
+  }
 `
 
 export default ModalSelectPomodoro

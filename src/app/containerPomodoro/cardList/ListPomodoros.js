@@ -35,18 +35,19 @@ function ListPomodoros({ array }) {
 
   return (
     <ContainerList height="calc(100% - 130px)">
-      {array && array.map((obj, index) => (
-        <ItemListPomodoro
-          key={obj.indicator}
-          icon={() => selectIcon(obj)}
-          num={obj.indicator}
-          text={obj.name}
-          time={obj.time}
-          onSelect={() => onSelect(obj)}
-          onEdit={(newName) => onEdit(obj, newName)}
-          onDelete={(index !== 0) ? () => onDelete(obj) : undefined}
-        /> // tirando o btn de del do primeiro pomodoro
-      ))}
+      {array &&
+        array.map((obj, index) => (
+          <ItemListPomodoro
+            key={obj.indicator}
+            icon={() => selectIcon(obj)}
+            num={obj.indicator}
+            text={obj.name}
+            time={obj.time}
+            onSelect={() => onSelect(obj)}
+            onEdit={(newName) => onEdit(obj, newName)}
+            onDelete={index !== 0 ? () => onDelete(obj) : undefined}
+          /> // tirando o btn de del do primeiro pomodoro
+        ))}
     </ContainerList>
   )
 }

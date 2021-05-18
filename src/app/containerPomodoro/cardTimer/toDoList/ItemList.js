@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import {
-  MdCheckBoxOutlineBlank, MdCheckBox, MdArrowDropDown, MdDeleteForever,
+  MdCheckBoxOutlineBlank,
+  MdCheckBox,
+  MdArrowDropDown,
+  MdDeleteForever,
 } from 'react-icons/md'
 
 import Horizontal from '../../../components/Horizontal'
@@ -32,16 +35,21 @@ function ItemList({
 
   return (
     <Horizontal margin="0 0 10px">
-      <Card onClick={changeDone} padding="0 5px" cursor="pointer" selected={checked}>
-        {checked
-          ? <MdCheckBox size="26" color="#4EB089" />
-          : <MdCheckBoxOutlineBlank size="26" color="#4EB089" />}
+      <Card
+        onClick={changeDone}
+        padding="0 5px"
+        cursor="pointer"
+        selected={checked}
+      >
+        {checked ? (
+          <MdCheckBox size="26" color="#4EB089" />
+        ) : (
+          <MdCheckBoxOutlineBlank size="26" color="#4EB089" />
+        )}
       </Card>
 
       <Card margin="0 8px" selected={checked}>
-        <Text margin="0 6px 0 12px">
-          {indicator}
-        </Text>
+        <Text margin="0 6px 0 12px">{indicator}</Text>
 
         <BtnIcon onClick={openModal}>
           <MdArrowDropDown size="24" color="#303030" />
@@ -56,7 +64,7 @@ function ItemList({
         selected={checked}
         hidden
       >
-        {(onEdit && !openEdit) ? (
+        {onEdit && !openEdit ? (
           <Text onClick={clickEdit} scratched={checked} cursor="text">
             {text}
           </Text>
@@ -84,7 +92,7 @@ const Card = styled.div`
   width: ${({ width = 'initial' }) => width};
   height: 38px;
   border-radius: 6px;
-  background: #FFFFFF;
+  background: #ffffff;
 
   padding: ${({ padding = '0' }) => padding};
   margin: ${({ margin = '0' }) => margin};
@@ -94,7 +102,7 @@ const Card = styled.div`
   align-items: center;
   justify-content: ${({ justify = 'initial' }) => justify};
 
-  box-shadow: 0px 2px 2px .5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 2px 0.5px rgba(0, 0, 0, 0.25);
   cursor: ${({ cursor = 'default' }) => cursor};
   position: relative;
   ${({ hidden }) => (hidden ? 'overflow: hidden;' : null)};
@@ -105,12 +113,19 @@ const Card = styled.div`
     transition: right 300ms ease-in;
   }
 
-  :hover .hide { right: 0; }
+  :hover .hide {
+    right: 0;
+  }
 `
 
 const ContainerbtnDel = styled.div`
-  button svg { transition: fill 500ms ease-out; }
-  :hover button svg { fill: #B50000; }
+  button svg {
+    transition: fill 500ms ease-out;
+
+    &:hover {
+      fill: #b50000;
+    }
+  }
 `
 
 export default ItemList

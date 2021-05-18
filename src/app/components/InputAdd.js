@@ -4,7 +4,7 @@ import { MdAdd } from 'react-icons/md'
 
 import BtnIcon from './BtnIcon'
 
-function InputAdd({ onClickAdd = () => { }, margin, ...props }) {
+function InputAdd({ onClickAdd = () => {}, margin, ...props }) {
   return (
     <Container margin={margin}>
       <Input {...props} />
@@ -20,7 +20,7 @@ const Container = styled.div`
   margin: ${({ margin = '0' }) => margin};
   padding: 4px 10px;
   border-radius: 30px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
 `

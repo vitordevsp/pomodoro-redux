@@ -84,7 +84,10 @@ function ToDoList({ obj }) {
       </ContainerList>
 
       {modalOpen && (
-        <ModalSelectPomodoro selectedObject={selectedObject} closeModal={closeModal} />
+        <ModalSelectPomodoro
+          selectedObject={selectedObject}
+          closeModal={closeModal}
+        />
       )}
     </>
   )

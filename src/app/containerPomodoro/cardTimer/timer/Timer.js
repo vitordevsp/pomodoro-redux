@@ -118,20 +118,22 @@ function Timer({ obj }) {
   }
 
   // ------------- Timer Functions -------------
-  const changeTimer = () => setTimer((time) => {
-    const { min, seg } = timerDecrement(time)
+  const changeTimer = () => {
+    setTimer((time) => {
+      const { min, seg } = timerDecrement(time)
 
-    if (min <= 0 && seg === 0) {
-      if (soundOn) soundAlert.play()
-      setConclude(true)
-    }
+      if (min <= 0 && seg === 0) {
+        if (soundOn) soundAlert.play()
+        setConclude(true)
+      }
 
-    const newTimer = convertTimer.string(min, seg)
+      const newTimer = convertTimer.string(min, seg)
 
-    setPageTitle(`${obj.indicator}) ${newTimer}`)
+      setPageTitle(`${obj.indicator}) ${newTimer}`)
 
-    return newTimer
-  })
+      return newTimer
+    })
+  }
 
   const startTimer = () => {
     if (idInterval !== '') return
@@ -168,7 +170,12 @@ function Timer({ obj }) {
 
   return (
     <Container>
-      <Horizontal width="100%" margin="0 0 20px 0" justify="center" position="relative">
+      <Horizontal
+        width="100%"
+        margin="0 0 20px 0"
+        justify="center"
+        position="relative"
+      >
         <BtnIcon
           onClick={openModalTimer}
           className="settings"
@@ -181,9 +188,7 @@ function Timer({ obj }) {
         </BtnIcon>
 
         <Horizontal position="relative">
-          <DisplayTimer rest={rest}>
-            {timer}
-          </DisplayTimer>
+          <DisplayTimer rest={rest}>{timer}</DisplayTimer>
 
           <BtnIcon
             onClick={soundOnChange}
@@ -193,23 +198,33 @@ function Timer({ obj }) {
             background="#F5F5F5"
             shadow
           >
-            {soundOn ? (
-              <MdAlarm size="24" />
-            ) : (
-              <MdAlarmOff size="24" />
-            )}
+            {soundOn ? <MdAlarm size="24" /> : <MdAlarmOff size="24" />}
           </BtnIcon>
         </Horizontal>
       </Horizontal>
 
       <Horizontal>
-        {(conclude)
-          ? <Button onClick={concludePomodoro} text="CONCLUIR" background="#4EB089" color="white" />
-          : <Button onClick={startTimer} text="INICIAR" background="#4EB089" color="white" />}
+        {conclude ? (
+          <Button
+            onClick={concludePomodoro}
+            text="CONCLUIR"
+            background="#4EB089"
+            color="white"
+          />
+        ) : (
+          <Button
+            onClick={startTimer}
+            text="INICIAR"
+            background="#4EB089"
+            color="white"
+          />
+        )}
 
-        {(reset)
-          ? <Button onClick={resetTimer} text="ZERAR" />
-          : <Button onClick={pauseTimer} text="PARAR" />}
+        {reset ? (
+          <Button onClick={resetTimer} text="ZERAR" />
+        ) : (
+          <Button onClick={pauseTimer} text="PARAR" />
+        )}
       </Horizontal>
 
       {modalTimer && (
@@ -233,12 +248,14 @@ const Container = styled.div`
 
   .settings {
     position: absolute;
-    top: -10px; left: 14px;
+    top: -10px;
+    left: 14px;
   }
 
   .clock {
     position: absolute;
-    top: 5px; right: -55px;
+    top: 5px;
+    right: -55px;
   }
 `
 

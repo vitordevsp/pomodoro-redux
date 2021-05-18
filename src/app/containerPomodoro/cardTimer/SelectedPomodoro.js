@@ -19,9 +19,7 @@ function SelectedPomodoro({ obj }) {
 
       <Line />
 
-      <Text nowrap>
-        {`${countToDoCompleted} - ${countToDo}`}
-      </Text>
+      <Text nowrap>{`${countToDoCompleted} - ${countToDo}`}</Text>
     </Horizontal>
   )
 }

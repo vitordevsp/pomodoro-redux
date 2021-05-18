@@ -35,7 +35,9 @@ function ModalEditTimer({
   const closeModalEditTimer = () => {
     const { pomodoro, rest } = generateObjTime()
 
-    if (objTimer.pomodoro !== pomodoro || objTimer.rest !== rest) defineObjTimer(pomodoro, rest)
+    if (objTimer.pomodoro !== pomodoro || objTimer.rest !== rest) {
+      defineObjTimer(pomodoro, rest)
+    }
 
     closeModal()
   }
@@ -48,18 +50,32 @@ function ModalEditTimer({
             <MdClose size="28" color="#303030" />
           </BtnIcon>
 
-          <Text size="1.4em" weight="700" margin="0 16px">Editar tempo</Text>
+          <Text size="1.4em" weight="700" margin="0 16px">
+            Editar tempo
+          </Text>
         </Horizontal>
 
         <div style={{ margin: '0 16px' }}>
           <Horizontal margin="0 0 12px">
             <Text>Pomodoro:</Text>
-            <Input value={timer.pomodoro} name="pomodoro" onChange={onChange} type="number" autoFocus />
+            <Input
+              value={timer.pomodoro}
+              name="pomodoro"
+              onChange={onChange}
+              type="number"
+              autoFocus
+            />
           </Horizontal>
 
           <Horizontal>
             <Text>Descanso:</Text>
-            <Input value={timer.rest} name="rest" onChange={onChange} type="number" mf="15px" />
+            <Input
+              value={timer.rest}
+              name="rest"
+              onChange={onChange}
+              type="number"
+              mf="15px"
+            />
           </Horizontal>
         </div>
       </Card>
@@ -68,9 +84,13 @@ function ModalEditTimer({
 }
 
 const Modal = styled.section`
-  background-color: rgba(0, 0, 0, .5);
-  position: absolute; z-index: 10;
-  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +102,7 @@ const Input = styled.input`
   width: 100%;
   color: #383838;
   font-weight: 500;
-  font-size: 1.20em;
+  font-size: 1.2em;
 `
 
 export default ModalEditTimer

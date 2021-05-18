@@ -26,7 +26,16 @@ function CardList() {
   return (
     <Card>
       <CounterPomodoro array={arrayPomodoros} />
-      <InputAdd id="inputPomodoro" placeholder="Novo Pomodoro: " value={newPomodoro} onChange={onChange} onClickAdd={onClickAdd} margin="0 24px 18px" />
+
+      <InputAdd
+        id="inputPomodoro"
+        placeholder="Novo Pomodoro: "
+        value={newPomodoro}
+        onChange={onChange}
+        onClickAdd={onClickAdd}
+        margin="0 24px 18px"
+      />
+
       <ListPomodoros array={arrayPomodoros} />
     </Card>
   )

@@ -5,7 +5,7 @@ const Line = styled.div`
   height: 3px;
   border-radius: 10px;
   margin: 0 16px;
-  background-color: #BEBEBE;
+  background-color: #bebebe;
 `
 
 export default Line

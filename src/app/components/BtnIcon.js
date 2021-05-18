@@ -16,15 +16,18 @@ const BtnIcon = styled.button`
   color: ${({ color = '#343434' }) => color};
   background: ${({ background = 'transparent' }) => background};
 
-  ${({ shadow }) => (shadow ? 'box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.25);' : null)}
+  ${({ shadow }) =>
+    shadow ? 'box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.25);' : null}
   transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
 
   &:hover {
     transform: scale(1.18);
-    background: rgba(50, 50, 50, .1);
+    background: rgba(50, 50, 50, 0.1);
   }
 
-  &:active { opacity: .5; }
+  &:active {
+    opacity: 0.5;
+  }
 `
 
 export default BtnIcon

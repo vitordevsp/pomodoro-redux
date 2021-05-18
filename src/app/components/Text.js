@@ -6,7 +6,8 @@ const Text = styled.h3`
   margin: ${({ margin = '0' }) => margin};
   font-size: ${({ size = '1.17em' }) => size};
   font-weight: ${({ weight = '500' }) => weight};
-  text-decoration: ${({ scratched }) => (scratched ? 'line-through' : 'initial')};
+  text-decoration: ${({ scratched }) =>
+    scratched ? 'line-through' : 'initial'};
   cursor: ${({ cursor = 'default' }) => cursor};
 `
 

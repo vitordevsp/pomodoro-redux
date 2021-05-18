@@ -41,7 +41,7 @@ function ItemListPomodoro({
 
         <Text margin="0 8px 0 12px" nowrap>{`${num} - `}</Text>
 
-        {(onEdit && openEdit) ? (
+        {onEdit && openEdit ? (
           <InputNoBorder
             width="75%"
             placeholder="Pomodoro"
@@ -57,7 +57,11 @@ function ItemListPomodoro({
         )}
       </Horizontal>
 
-      {time && <Text className="none" weight="300" size="1em">{time}</Text>}
+      {time && (
+        <Text className="none" weight="300" size="1em">
+          {time}
+        </Text>
+      )}
 
       {onDelete && (
         <ContainerBtnDel className="hide">
@@ -73,7 +77,7 @@ function ItemListPomodoro({
 const Card = styled.div`
   height: 44px;
   border-radius: 10px;
-  background: #FFFFFF;
+  background: #ffffff;
 
   padding: ${({ padding = '0' }) => padding};
   margin: ${({ margin = '0 0 12px' }) => margin};
@@ -82,7 +86,7 @@ const Card = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  box-shadow: 0px 3px 3px .5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 3px 3px 0.5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -107,8 +111,13 @@ const Card = styled.div`
 `
 
 const ContainerBtnDel = styled.div`
-  button svg { transition: fill 500ms ease-out; }
-  :hover button svg { fill: #B50000; }
+  button svg {
+    transition: fill 500ms ease-out;
+
+    &:hover {
+      fill: #b50000;
+    }
+  }
 `
 
 export default ItemListPomodoro
