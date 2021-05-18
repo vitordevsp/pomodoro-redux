@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Horizontal from '../../components/Horizontal'
 import Text from '../../components/Text'
 

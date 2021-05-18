@@ -1,15 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
 import { MdClose, MdArrowForward } from 'react-icons/md'
+import { useSelector, useDispatch } from 'react-redux'
 
-import Card from '../../../components/Card'
-import Horizontal from '../../../components/Horizontal'
-import BtnIcon from '../../../components/BtnIcon'
-import Text from '../../../components/Text'
-import ContainerList from '../../../components/ContainerList'
-import ItemListPomodoro from '../../../components/ItemListPomodoro'
+import styled from 'styled-components'
+
 import { toDoList } from '../../../../store/actions'
+import BtnIcon from '../../../components/BtnIcon'
+import Card from '../../../components/Card'
+import ContainerList from '../../../components/ContainerList'
+import Horizontal from '../../../components/Horizontal'
+import ItemListPomodoro from '../../../components/ItemListPomodoro'
+import Text from '../../../components/Text'
 
 function ModalSelectPomodoro({ selectedObject, closeModal }) {
   const { indicatorPomodoro, indexTask, objTask } = selectedObject

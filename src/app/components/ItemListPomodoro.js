@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { MdDeleteForever } from 'react-icons/md'
 
-import Horizontal from './Horizontal'
-import Text from './Text'
+import styled from 'styled-components'
+
 import BtnIcon from './BtnIcon'
+import Horizontal from './Horizontal'
 import InputNoBorder from './InputNoBorder'
+import Text from './Text'
 
 function ItemListPomodoro({
   icon: Icon,

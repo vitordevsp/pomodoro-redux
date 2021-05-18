@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
 
+import styled from 'styled-components'
+
+import BtnIcon from '../../../components/BtnIcon'
 import Card from '../../../components/Card'
 import Horizontal from '../../../components/Horizontal'
-import BtnIcon from '../../../components/BtnIcon'
 import Text from '../../../components/Text'
 
 function ModalEditTimer({

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { MdCheckCircle, MdArrowForward, MdTimer } from 'react-icons/md'
+import { useDispatch } from 'react-redux'
 
 import { pomodoro } from '../../../store/actions'
 import ContainerList from '../../components/ContainerList'

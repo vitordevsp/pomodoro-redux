@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Card from '../../components/Card'
-import CounterPomodoro from './CounterPomodoro'
-import InputAdd from '../../components/InputAdd'
-import ListPomodoros from './ListPomodoros'
 import { pomodoro } from '../../../store/actions'
+import Card from '../../components/Card'
+import InputAdd from '../../components/InputAdd'
+import CounterPomodoro from './CounterPomodoro'
+import ListPomodoros from './ListPomodoros'
 
 function CardList() {
   const dispatch = useDispatch()

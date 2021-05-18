@@ -1,5 +1,6 @@
 import React from 'react'
 import { MdTimer } from 'react-icons/md'
+
 import styled from 'styled-components'
 
 function Header() {

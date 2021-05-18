@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
@@ -7,10 +6,12 @@ import {
   MdDeleteForever,
 } from 'react-icons/md'
 
-import Horizontal from '../../../components/Horizontal'
-import Text from '../../../components/Text'
+import styled from 'styled-components'
+
 import BtnIcon from '../../../components/BtnIcon'
+import Horizontal from '../../../components/Horizontal'
 import InputNoBorder from '../../../components/InputNoBorder'
+import Text from '../../../components/Text'
 
 function ItemList({
   indicator,

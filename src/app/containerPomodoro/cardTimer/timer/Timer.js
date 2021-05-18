@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { MdSettings, MdAlarm, MdAlarmOff } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 
+import styled from 'styled-components'
+
 import { pomodoro } from '../../../../store/actions'
-import Horizontal from '../../../components/Horizontal'
 import BtnIcon from '../../../components/BtnIcon'
 import Button from '../../../components/Button'
+import Horizontal from '../../../components/Horizontal'
 import ModalEditTimer from './ModalEditTimer'
 
 const setPageTitle = (newTitle) => {

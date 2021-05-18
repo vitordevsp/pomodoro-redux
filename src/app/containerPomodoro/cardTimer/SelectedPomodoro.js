@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Horizontal from '../../components/Horizontal'
-import Text from '../../components/Text'
 import Line from '../../components/Line'
+import Text from '../../components/Text'
 
 function SelectedPomodoro({ obj }) {
   const countToDo = obj.toDoList.length

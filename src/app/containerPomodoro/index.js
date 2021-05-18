@@ -1,8 +1,9 @@
 import React from 'react'
+
 import styled from 'styled-components'
 
-import CardTimer from './cardTimer'
 import CardList from './cardList'
+import CardTimer from './cardTimer'
 
 function ContainerPomodoro() {
   return (

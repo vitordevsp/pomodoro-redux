@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import InputAdd from '../../../components/InputAdd'
-import ItemList from './ItemList'
 import { toDoList } from '../../../../store/actions'
 import ContainerList from '../../../components/ContainerList'
+import InputAdd from '../../../components/InputAdd'
+import ItemList from './ItemList'
 import ModalSelectPomodoro from './ModalSelectPomodoro'
 
 function ToDoList({ obj }) {
